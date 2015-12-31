@@ -1,0 +1,40 @@
+Eti\JobeetBundle\Entity\Affiliate:
+    type: entity
+    table: affiliate
+    repositoryClass: Eti\JobeetBundle\Repository\AffiliateRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        url:
+            type: string
+            length: 255
+        email:
+            type: string
+            length: 255
+            unique: true
+        token:
+            type: string
+            length: 255
+        isActive:
+            type: boolean
+            nullable: true
+            column: is_active
+        createdAt:
+            type: datetime
+            column: created_at
+    manyToMany:
+        categories:
+            targetEntity: Category
+            joinTable:
+                name: category_affiliate
+                joinColumns:
+                    affiliate_id:
+                        referencedColumnName: id
+                inverseJoinColumns:
+                    category_id:
+                        referencedColumnName: id
+            inversedBy: affiliates
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAtValue, setTokenValue ]

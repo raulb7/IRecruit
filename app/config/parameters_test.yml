@@ -1,0 +1,12 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: jobeet_test
+    database_user: root
+    database_password: 123456
+    mailer_transport:  gmail
+    mailer_host:       ~
+    mailer_user:       abclaur@gmail.com
+    mailer_password:   dud$msty@1400R
+    secret: dasjlidusa98dysa9d08yash0d8hsadhasoidj

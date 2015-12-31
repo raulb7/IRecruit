@@ -1,0 +1,25 @@
+eti_jobeet_eti_job:
+    resource: "@EtiJobeetBundle/Resources/config/routing/job.yml"
+    prefix:   /
+eti_jobeet_eti_affiliate:
+    resource: "@EtiJobeetBundle/Resources/config/routing/affiliate.yml"
+    prefix:   /affiliate
+
+eti_jobeet_homepage:
+    path:     /
+    defaults: { _controller: EtiJobeetBundle:Job:index }
+eti_jobeet_category:
+    path:  /category/{slug}/{page}
+    defaults: { _controller: EtiJobeetBundle:Category:show, page: 1 }
+eti_jobeet_api:
+    pattern: /api/{token}/jobs.{_format}
+    defaults: {_controller: "EtiJobeetBundle:Api:list"}
+    requirements:
+        _format: xml|json|yaml
+login:
+    path:   /login
+    defaults:  { _controller: EtiJobeetBundle:Default:login }
+login_check:
+    path:   /login_check
+logout:
+    path:   /logout

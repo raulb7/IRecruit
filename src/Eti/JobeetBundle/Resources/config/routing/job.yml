@@ -1,0 +1,62 @@
+eti_job:
+    path:     /
+    defaults: { _controller: "EtiJobeetBundle:Job:index" }
+
+eti_job_show:
+    path:     /job/{company}/{location}/{id}/{position}
+    defaults: { _controller: "EtiJobeetBundle:Job:show" }
+    requirements:
+        id: '\d+'
+
+eti_job_preview:
+    path:  job/{company}/{location}/{token}/{position}
+    defaults: { _controller: "EtiJobeetBundle:Job:preview" }
+    requirements:
+        token:  '\w+'
+
+eti_job_publish:
+    path:  job/{token}/publish
+    defaults: { _controller: "EtiJobeetBundle:Job:publish" }
+    methods:  POST
+
+eti_job_new:
+    path:     /job/new
+    defaults: { _controller: "EtiJobeetBundle:Job:new" }
+
+eti_job_create:
+    path:     /job/create
+    defaults: { _controller: "EtiJobeetBundle:Job:create" }
+    methods:  POST
+
+eti_job_edit:
+    path:     /job/{token}/edit
+    defaults: { _controller: "EtiJobeetBundle:Job:edit" }
+    requirements:
+        token:  '\w+'
+
+eti_job_update:
+    path:     /job/{token}/update
+    defaults: { _controller: "EtiJobeetBundle:Job:update" }
+    methods:  [POST]
+    requirements:
+        token:  '\w+'
+
+eti_job_delete:
+    path:     /job/{token}/delete
+    defaults: { _controller: "EtiJobeetBundle:Job:delete" }
+    methods:  [POST]
+    requirements:
+        token: '\w+'
+
+eti_job_extend:
+    path:  /{token}/extend
+    defaults: { _controller: "EtiJobeetBundle:Job:extend" }
+    methods: POST
+
+eti_job_delete_logo_ajax:
+    path: /delete/logo/{id}
+    defaults: { _controller: "EtiJobeetBundle:Job:deleteLogo" }
+
+eti_job_search:
+    path: /job/search
+    defaults: { _controller: "EtiJobeetBundle:Job:search" }

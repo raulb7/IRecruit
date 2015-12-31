@@ -1,0 +1,81 @@
+{% extends 'EtiJobeetBundle::layout.html.twig' %}
+ 
+{% block title %}
+    {{ job.company }} is looking for a {{ job.position }}
+{% endblock %}
+ 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/etijobeet/css/job.css') }}" type="text/css" media="all" />
+{% endblock %}
+ 
+{% block content %}
+    {% if app.request.get('token') %}
+        {% include 'EtiJobeetBundle:Job:admin.html.twig' %}
+    {% endif %}
+    <div id="job">
+        <h1>{{ job.company }}</h1>
+        <h2>{{ job.location }}</h2>
+        <h3>
+            {{ job.position }}
+            <small> - {{ job.type }}</small>
+        </h3>
+ 
+        {% if job.logo %}
+            <div class="logo">
+                <a href="{{ job.url }}">
+                    <img src="/uploads/jobs/{{ job.logo }}"
+                        alt="{{ job.company }} logo" />
+                </a>
+            </div>
+        {% endif %}
+ 
+        <div class="description">
+            {{ job.description|nl2br }}
+        </div>
+ 
+        <h4>How to apply?</h4>
+ 
+        <p class="how_to_apply">{{ job.howtoapply }}</p>
+ 
+        <div class="meta">
+            {% if job.logo %}
+                <a href="#" class="delete-logo" style="font-size: 30px" onclick="deleteJob()"   >Delete logo</a><br />
+            {% endif %}
+            <small>posted on {{ job.createdAt|date('m/d/Y') }}</small>
+        </div>
+        
+        {# Leave the following uncommented only for development purposes. #}
+        <div style="padding: 20px 0">
+            <a href="{{ path('eti_job_edit', { 'token': job.token }) }}">
+                Edit
+            </a>
+        </div>
+    </div>
+    <script>
+        function deleteJob() {
+            var confirmation = confirm('Are you sure you want to delete the logo?');
+            if (confirmation) {
+                $.ajax({
+                    url: "{{ path('eti_job_delete_logo_ajax', {'id': job.id}) }}",
+                    dataType: "json",
+                    data: {},
+                    success: function (data) {
+                        response = $.parseJSON(data);
+                        console.log(response);
+
+                        if (response.status == 'success') {
+                            window.location.reload();
+                        }
+
+                        if (response.status == 'fail') {
+                            alert("Try again later...Logo deletion failed");
+                        }
+                    }
+                });
+            }
+
+            return false;
+        }
+    </script>
+{% endblock %}
