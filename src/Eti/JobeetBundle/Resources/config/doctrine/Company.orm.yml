@@ -1,0 +1,40 @@
+Eti\JobeetBundle\Entity\Company:
+    type: entity
+    table: company
+    repositoryClass: Eti\JobeetBundle\Repository\CompanyRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            nullable: false
+        activityDomain:
+            type: string
+            nullable: false
+        city:
+            type: string
+            nullable: false
+        country:
+            type: string
+            nullable: false
+        address:
+            type: string
+            nullable: false
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at
+    oneToOne:
+        user:
+            targetEntity: User
+            inversedBy:   company
+            joinColumn:
+                name: id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAtValue, setTokenValue ]
+        preUpdate: [ setUpdatedAtAtValue ]

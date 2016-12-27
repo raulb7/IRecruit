@@ -1,0 +1,51 @@
+Eti\JobeetBundle\Entity\Profile:
+    type: entity
+    table: profile
+    repositoryClass: Eti\JobeetBundle\Repository\ProfileRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        firstName:
+            type: string
+            nullable: false
+        lastName:
+            type: string
+            length: 255
+            nullable: false
+        birthDate:
+            type: date
+            nullable: false
+        image:
+            type: string
+            nullable: true
+        phone:
+            type: string
+            nullable: false
+        gender:
+            type: boolean
+            nullable: false
+        address:
+            type: string
+            nullable: true
+        city:
+            type: string
+            nullable: false
+        country:
+            type: string
+            nullable: false
+        createdAt:
+            type: datetime
+        updatedAt:
+            type: datetime
+    oneToOne:
+        user:
+            targetEntity: User
+            inversedBy:   profile
+            joinColumn:
+                name: id
+                referencedColumnName: id
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAtValue, setTokenValue ]
+        preUpdate: [ setUpdatedAtAtValue ]

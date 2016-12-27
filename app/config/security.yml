@@ -1,5 +1,6 @@
 security:
     role_hierarchy:
+        ROLE_COMPANY:     ROLE_USER
         ROLE_ADMIN:       ROLE_USER
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
@@ -14,6 +15,7 @@ security:
             form_login:
                 login_path:  /login
                 check_path:  /login_check
+                success_handler: login_success_handler
                 # default_target_path: eti_jobeet_homepage
             logout:
                 path:   /logout
@@ -21,6 +23,7 @@ security:
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/company, roles: ROLE_COMPANY }
 
     providers:
         main:

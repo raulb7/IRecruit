@@ -627,8 +627,9 @@ class Job
 
     public function isFileUploadedOrExists(ExecutionContextInterface $context)
     {
-        if(null === $this->logo && null === $this->file)
-            $context->addViolationAt('file', 'You have to choose a file', [], null);   
+        // This makes the uploaded photo to be a must
+        // if(null === $this->logo && null === $this->file)
+        //     $context->addViolationAt('file', 'You have to choose a file', [], null);   
     }
 
     /**
@@ -783,5 +784,17 @@ class Job
         // add job to the index
         $index->addDocument($doc);
         $index->commit();
+    }
+
+    /**
+     * @ORM\PostRemove
+     */
+    public function deleteLuceneIndex()
+    {
+        $index = self::getLuceneIndex();
+ 
+        foreach ($index->find('pk:'.$this->getId()) as $hit) {
+            $index->delete($hit->id);
+        }
     }
 }

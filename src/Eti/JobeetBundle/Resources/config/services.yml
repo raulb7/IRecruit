@@ -27,3 +27,8 @@ services:
             - ~
             - Eti\JobeetBundle\Entity\Affiliate
             - 'EtiJobeetBundle:Admin\AffiliateAdmin'
+    login_success_handler:
+        class:   Eti\JobeetBundle\Security\Handler\AuthenticationSuccessHandler
+        arguments:  [@router, @security.context]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }

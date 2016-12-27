@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Eti\JobeetBundle\Entity\Job;
 use Eti\JobeetBundle\Form\JobType;
 use Eti\JobeetBundle\Utils\Jobeet;
+use DateTime;
 
 /**
  * Job controller.
@@ -24,7 +25,7 @@ class JobController extends Controller
      *
      */
     public function indexAction()
-    {   
+    {
         $em = $this->getDoctrine()->getManager();
 
         $categories = $this->getDoctrine()->getRepository('EtiJobeetBundle:Category')->getWithJobs();

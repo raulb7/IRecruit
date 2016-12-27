@@ -23,3 +23,19 @@ login_check:
     path:   /login_check
 logout:
     path:   /logout
+
+test:
+    path:   /test
+    defaults:  { _controller: EtiJobeetBundle:Default:test }
+
+test2:
+    path:   /test2
+    defaults:  { _controller: EtiJobeetBundle:Default:test2 }
+
+company_dashboard:
+    path:   /company/dashboard
+    defaults:  { _controller: EtiJobeetBundle:Company:dashboard}
+
+user_dashboard:
+    path:   /user/dashboard
+    defaults:  { _controller: EtiJobeetBundle:User:dashboard}

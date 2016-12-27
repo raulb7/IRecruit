@@ -27,4 +27,15 @@ class DefaultController extends Controller
             'error'         => $error,
         ));
     }
+
+    public function testAction()
+    {
+       return $this->render('test.html.twig', [
+            'template' => 1
+        ]);
+    }
+    public function test2Action()
+    {
+        return $this->render('test2.html.twig');
+    }
 }

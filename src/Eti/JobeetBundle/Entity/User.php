@@ -2,105 +2,83 @@
 
 namespace Eti\JobeetBundle\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use FOS\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * User
+ * @ORM\Entity
+ * @ORM\Table(name="user")
  */
-class User implements UserInterface
+class User extends BaseUser
 {
     /**
-     * @var integer
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
-    /**
-     * @var string
-     */
-    private $username;
-
-    /**
-     * @var string
-     */
-    private $password;
-
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
+    public function __construct()
     {
-        return $this->id;
+        parent::__construct();
+        // your own logic
     }
+    /**
+     * @var \Eti\JobeetBundle\Entity\Company
+     */
+    private $company;
 
     /**
-     * Set username
+     * @var \Eti\JobeetBundle\Entity\Profile
+     */
+    private $profile;
+
+
+    /**
+     * Set company
      *
-     * @param string $username
+     * @param \Eti\JobeetBundle\Entity\Company $company
      *
      * @return User
      */
-    public function setUsername($username)
+    public function setCompany(\Eti\JobeetBundle\Entity\Company $company = null)
     {
-        $this->username = $username;
+        $this->company = $company;
 
         return $this;
     }
 
     /**
-     * Get username
+     * Get company
      *
-     * @return string
+     * @return \Eti\JobeetBundle\Entity\Company
      */
-    public function getUsername()
+    public function getCompany()
     {
-        return $this->username;
+        return $this->company;
     }
 
     /**
-     * Set password
+     * Set profile
      *
-     * @param string $password
+     * @param \Eti\JobeetBundle\Entity\Profile $profile
      *
      * @return User
      */
-    public function setPassword($password)
+    public function setProfile(\Eti\JobeetBundle\Entity\Profile $profile = null)
     {
-        $this->password = $password;
+        $this->profile = $profile;
 
         return $this;
     }
 
     /**
-     * Get password
+     * Get profile
      *
-     * @return string
+     * @return \Eti\JobeetBundle\Entity\Profile
      */
-    public function getPassword()
+    public function getProfile()
     {
-        return $this->password;
+        return $this->profile;
     }
-
-    public function getRoles()
-    {
-        return ['ROLE_ADMIN'];
-    }
- 
-    public function getSalt()
-    {
-        return null;
-    }
- 
-    public function eraseCredentials()
-    {
- 
-    }
- 
-    public function equals(User $user)
-    {
-        return $user->getUsername() == $this->getUsername();
-    }  
 }

@@ -1,14 +1,15 @@
 Eti\JobeetBundle\Entity\User:
-    type: entity
+    type:  entity
     table: user
     id:
         id:
             type: integer
-            generator: { strategy: AUTO }
-    fields:
-        username:
-            type: string
-            length: 255
-        password:
-            type: string
-            length: 255
+            generator:
+                strategy: AUTO
+    oneToOne:
+        company:
+            targetEntity: Company
+            mappedBy:     user
+        profile:
+            targetEntity: Profile
+            mappedBy:     user
