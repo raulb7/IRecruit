@@ -19,13 +19,9 @@ eti_job_publish:
     defaults: { _controller: "EtiJobeetBundle:Job:publish" }
     methods:  POST
 
-eti_job_new:
-    path:     /job/new
-    defaults: { _controller: "EtiJobeetBundle:Job:new" }
-
 eti_job_create:
-    path:     /job/create
-    defaults: { _controller: "EtiJobeetBundle:Job:create" }
+    path:     /company/job/create
+    defaults: { _controller: "EtiJobeetBundle:Company:createJob" }
     methods:  POST
 
 eti_job_edit:
@@ -53,9 +49,9 @@ eti_job_extend:
     defaults: { _controller: "EtiJobeetBundle:Job:extend" }
     methods: POST
 
-eti_job_delete_logo_ajax:
-    path: /delete/logo/{id}
-    defaults: { _controller: "EtiJobeetBundle:Job:deleteLogo" }
+eti_job_delete_job_ajax:
+    path: /delete/job/{id}
+    defaults: { _controller: "EtiJobeetBundle:Job:deleteAjax" }
 
 eti_job_search:
     path: /job/search

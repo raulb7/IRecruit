@@ -51,14 +51,13 @@
 
 </head>
 <body>
-
-
-<div id="fh5co-page">
+    {% block header %}
     {% include '@EtiJobeet/Company/header.html.twig' %}
-
-    {% block content %}
     {% endblock %}
-</div>
+    <br><br>
+        {% block content %}
+        {% endblock %}
+
 
 {% block javascripts %}
     <!-- jQuery -->
@@ -76,6 +75,15 @@
 
     <!-- MAIN JS -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <!-- typetoggle -->
+    <script>
+        $(function() {
+            $('#typeselector').change(function(){
+                $('.types').hide();
+                $('#' + $(this).val()).show();
+            });
+        });
+    </script>
 {% endblock %}
 
 </body>

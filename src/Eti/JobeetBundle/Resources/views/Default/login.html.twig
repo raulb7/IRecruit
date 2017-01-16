@@ -1,13 +1,209 @@
-{% if error %}
-    <div>{{ error.message }}</div>
-{% endif %}
- 
-<form action="{{ path('login_check') }}" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="_username" value="{{ last_username }}" />
- 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="_password" />
- 
-    <button type="submit">login</button>
-</form>
+{% extends '@EtiJobeet/Company/layout.html.twig'  %}
+
+{% block content %}
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info" >
+                <div class="panel-heading">
+                    <div class="panel-title" style="color:black"><b>Login</b></div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-20px"><a href="#" style="color:red"><b>Forgot password?</b></a></div>
+                </div>
+                <div style="padding-top:30px" class="panel-body" >
+                    <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                    <form id="loginform" action="{{ path('login_check') }}" class="form-horizontal" method="post">
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input id="username" type="text" class="form-control" name="_username" value="{{ last_username }}" placeholder="Username or e-mail address">
+                        </div>
+                        <div style="margin-bottom: 25px" class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input id="password" type="password" class="form-control" name="_password" placeholder="Password">
+                        </div>
+                        <div class="input-group">
+                            <div class="checkbox">
+                                <label>
+                                    <input id="loginremember" type="checkbox" name="remember" value="1"> Remember me
+                                </label>
+                            </div>
+                        </div>
+                        {% if error %}
+                            </br><div class="alert alert-danger" role="alert">Username or password is incorrect. Please try again!</div>
+                        {% endif %}
+                        <div style="margin-top:10px" class="form-group">
+                            <div class="col-sm-12 controls" align="center">
+                                <button class="btn btn-primary btn-block" type="submit" style="background: royalblue; width:40%;"><b>Login</b></button><br>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-12 control">
+                                <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                    Don't have an account?
+                                    <a href="#" onClick="$('#loginbox').hide(); $('#registerbox').show()" style="color:black">
+                                        Register Here
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div id="registerbox" style="display:none; margin-top:50px; width:50%" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <div class="panel-title"><b>Register</b></div>
+                    <div style="float:right; font-size: 85%; position: relative; top:-25px;"><a id="signinlink" href="#" onclick="$('#registerbox').hide(); $('#loginbox').show()" style="color:red"><b>Already a member? Login now!</b></a></div>
+                    <select class="form-control" style="background:aliceblue" id="typeselector">
+                        <option value="companybox">Company</option>
+                        <option value="userbox">Normal user</option>
+                    </select><br>
+                </div>
+                <div class="panel-body">
+                    <div id="userbox" style="display:none" class="types">
+                        <form id="signupform" class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">E-mail</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="email" placeholder="E-mail Address">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">Username</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="email" placeholder="username">
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                <label for="password" class="col-md-3 control-label">Password</label>
+                                <div class="col-md-9">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">First Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="firstname" placeholder="First Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Last Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Birth date</label>
+                                <div class="col-md-9">
+                                    <input type="date" class="form-control" name="birthDate">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Picture</label>
+                                <div class="col-md-9">
+                                    <input type="file" class="form-control-file">
+                                    <small id="fileHelp" class="form-text text-muted">Max size: 2Mb.</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Phone</label>
+                                <div class="col-md-9">
+                                    <input type="tel" class="form-control" name="phone" placeholder="Enter your phone number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Gender</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="gender">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Country</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="country">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">City</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="city">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Home address</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="homeaddress">
+                                </div>
+                            </div>
+                                <div class="col-md-offset-3 col-md-9" align="right">
+                                    <button id="btn-signup" type="button" class="btn btn-info">Register Now!</button>
+                                </div>
+                        </form>
+                    </div>
+                    <div id="companybox" style="display:none" class="types">
+                        <form id="signupform" class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="email" class="col-md-3 control-label">E-mail</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="email" placeholder="E-mail Address">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Username</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="email" placeholder="username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Password</label>
+                                <div class="col-md-9">
+                                    <input type="password" class="form-control" name="password" placeholder="Password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Company name</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="companyName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Company logo</label>
+                                <div class="col-md-9">
+                                    <input type="file" class="form-control-file">
+                                    <small id="fileHelp" class="form-text text-muted">Max size: 2Mb.</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Bussiness / domain</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="activityDomain">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Country</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="country">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">City</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="city">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Headquarter address</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="HQ">
+                                </div>
+                            </div>
+                                <div class="col-md-offset-3 col-md-9"  align="right">
+                                    <button id="btn-signup" type="button" class="btn btn-info">Register Now!</button>
+                                </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+

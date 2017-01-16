@@ -12,6 +12,7 @@ use Eti\JobeetBundle\Entity\Job;
 use Eti\JobeetBundle\Form\JobType;
 use Eti\JobeetBundle\Utils\Jobeet;
 use DateTime;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Job controller.
@@ -50,69 +51,6 @@ class JobController extends Controller
             'lastUpdated' => $lastUpdated,
             'feedId' => sha1($this->get('router')->generate('eti_job', ['_format'=> 'atom'], true))
         ]);
-    }
-    /**
-     * Creates a new Job entity.
-     *
-     */
-    public function createAction(Request $request)
-    {
-        $entity = new Job();
-        $form = $this->createCreateForm($entity);
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($entity);
-            $em->flush();
-
-            return $this->redirect($this->generateUrl('eti_job_preview', [
-                'company' => $entity->getCompanySlug(),
-                'location' => $entity->getLocationSlug(),
-                'token' => $entity->getToken(),
-                'position' => $entity->getPositionSlug()
-            ]));
-        }
-
-        return $this->render('EtiJobeetBundle:Job:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
-    }
-
-    /**
-     * Creates a form to create a Job entity.
-     *
-     * @param Job $entity The entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
-    private function createCreateForm(Job $entity)
-    {
-        $form = $this->createForm(new JobType(), $entity, array(
-            'action' => $this->generateUrl('eti_job_create'),
-            'method' => 'POST',
-        ));
-
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
-        return $form;
-    }
-
-    /**
-     * Displays a form to create a new Job entity.
-     *
-     */
-    public function newAction()
-    {
-        $entity = new Job();
-        $entity->setType('full-time');
-        $form   = $this->createCreateForm($entity);
-
-        return $this->render('EtiJobeetBundle:Job:new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
     }
 
     /**
@@ -323,13 +261,11 @@ class JobController extends Controller
         return $this->redirect($this->generateUrl('eti_job'));
     }
 
-    public function deleteLogoAction($id)
+    public function deleteAjaxAction($id)
     {
         $em = $this->getDoctrine()->getManager();
         $job = $em->getRepository('EtiJobeetBundle:Job')->findOneById($id);
-        $oldImagePath = $job->getLogo();
-        $job->removeFile($oldImagePath);
-        $job->setLogo(null);
+        $em->remove($job);
 
         try {
             $em->flush();
@@ -422,5 +358,48 @@ class JobController extends Controller
         }
  
         return $this->render('EtiJobeetBundle:Job:search.html.twig', ['jobs' => $jobs]);
+    }
+
+    /**
+     * @Route("/apply/job/{id}", name="eti_apply_job", requirements={"id"="\d+"})
+     */
+    public function applyJobAction(Request $request, $id)
+    {
+        $response = [
+            'status' => 'fail'
+        ];
+        if (!$this->getUser()) {
+            $response['message'] = 'You must be logged in to perform this action!';
+
+            return new JsonResponse($response);
+        }
+
+        if ($this->isGranted('ROLE_COMPANY')) {
+            $response['message'] = 'Companies cannot apply to jobs!';
+
+            return new JsonResponse($response);
+        }
+
+        $em = $this->get('doctrine.orm.entity_manager');
+        $job = $em->getRepository('EtiJobeetBundle:Job')
+            ->findOneById($id);
+
+        $userAlreadyApplied = false;
+        foreach ($job->getUsers() as $user) {
+            if ($user->getId() == $this->getUser()->getId()) {
+                $userAlreadyApplied = true;
+            }
+        }
+
+        if (!$userAlreadyApplied) {
+            $job->addUser($this->getUser());
+        }
+        $response['status'] = 'success';
+        $response['message'] = 'Thank you for your application!';
+
+        $em->persist($job);
+        $em->flush();
+
+        return new JsonResponse($response);
     }
 }

@@ -13,3 +13,8 @@ Eti\JobeetBundle\Entity\User:
         profile:
             targetEntity: Profile
             mappedBy:     user
+
+    manyToMany:
+        jobs:
+          targetEntity: Job
+          mappedBy: users

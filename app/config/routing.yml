@@ -2,6 +2,11 @@ eti_jobeet:
     resource: "@EtiJobeetBundle/Resources/config/routing.yml"
     prefix:   /
 
+eti_jobeet_annotation:
+    resource: "@EtiJobeetBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin

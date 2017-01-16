@@ -70,6 +70,21 @@ Eti\JobeetBundle\Entity\Job:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
+
+
+    manyToMany:
+        users:
+            targetEntity: User
+            inversedBy: jobs
+            joinTable:
+                name: job_user
+                joinColumns:
+                     job_id:
+                         referencedColumnName: id
+                inverseJoinColumns:
+                     user_id:
+                         referencedColumnName: id
+
     lifecycleCallbacks:
         prePersist: [ setTokenValue, preUpload, setCreatedAtValue, setExpiresAtValue ]
         preUpdate: [ preUpload, setUpdatedAtValue ]

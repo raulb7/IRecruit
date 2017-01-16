@@ -31,11 +31,14 @@ class DefaultController extends Controller
     public function testAction()
     {
        return $this->render('test.html.twig', [
-            'template' => 1
         ]);
     }
     public function test2Action()
     {
         return $this->render('test2.html.twig');
+    }
+    public function jobInterfaceAction()
+    {
+        return $this->render('@EtiJobeet/Job/jobInterface.html.twig');
     }
 }

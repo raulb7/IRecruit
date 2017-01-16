@@ -1,0 +1,80 @@
+{% extends '@EtiJobeet/Company/layout.html.twig' %}
+
+{% block content %}
+
+    {#<div id="fh5co-services-section"; style="background: linear-gradient(to bottom, rgba(185,228,247,1) 0%,rgba(0,180,231,1) 100%);">#}
+        <div class="container">
+            <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for a job" name="srch-term" id="srch-term">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </div>
+            <div id="fh5co-pricing-section"; style="background: transparent">
+                <div class="container">
+                    <div class="row">
+                        {% for job in pagination %}
+                            <div class="col-md-3 animate-box">
+                                <div class="price-box">
+                                    <h2 class="pricing-plan" align="left">{{ job.createdAt|date }}</h2>
+                                    <img src="{{ asset('assets/images/' ~ job.logo) }}" alt="user" height="100%" width="100%">
+                                    <p><b>{{ job.position }}</b></p>
+                                    <a href="{{ path("eti_job_show", {'id' : job.id, 'company' : job.company, 'location' : job.location, 'position' : job.position}) }}" class="btn btn-select-plan btn-sm">View</a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                                       View
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <nav>
+                    {{ knp_pagination_render(pagination) }}
+                </nav>
+            </div>
+        </div>
+    {#</div>#}
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                {% for job in pagination %}
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <div class="row">
+                        <div class="col-sm-8 m-b-md ">
+                            <h4 class="modal-title" id="myModalLabel">{{ job.position }}</h4>
+                        </div>
+                        <div class="col-sm-4 m-b-md text-sm-right">
+                            {{ job.logo }}
+                        </div>
+                    </div>
+                    <h4 class="modal-title" id="myModalLabel">{{ job.position }} and company logo on the right</h4>
+                </div>
+                <div class="modal-body" style="color:black">
+                    <h3><b>Company</b></h3>
+                    <p>{{ job.company }}</p>
+                    {#{% for company in pagination %}#}
+                    {#<p>{{ company.activity_domain }}</p>#}
+                    {#{% endfor %}#}
+                    <p>{{ job.url }}</p>
+                    <h3><b>Job</b></h3>
+                    <p>{{ job.type }}</p>
+                    <p>{{ job.description|nl2br }}</p>
+                    <h3><b>Location</b></h3>
+                    <p>{{ job.location }}</p>
+                    <h3><b>How to apply?</b></h3>
+                    <p>{{ job.howtoapply }}</p><br>
+                    <p align="right">Expires at: {{ job.expiresAt|date }}</p><br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal" style="background:orange"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                    <button type="button" class="btn btn-primary" style="background:green"><span class="glyphicon glyphicon-ok"></span> Apply!</button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -106,14 +106,18 @@ $form-group-margin-bottom:       30px !default;
 * ======================================================= */
 
 // Template Base
+html, body {
+	height:100%;
+}
 body {
 	font-family: $font-primary;
 	font-weight: 400;
 	font-size: 16px;
 	line-height: 1.7;
 	color: #7f7f7f;
-	background: #fff;
-	height: 100%;
+	background: linear-gradient(to top, rgba(185,228,247,1)0%,rgba(0,180,231,1) 100%);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
 	position: relative;
 }
 
@@ -296,7 +300,7 @@ h1, h2, h3, h4, h5, h6, figure {
 // Form Input Field
 .form-control {
 	box-shadow: none;
-	background: transparent;
+	background: white;
 	border: 2px solid rgba(0, 0, 0, 0.1);
 	height: 54px;
 	font-size: 18px;
@@ -657,6 +661,8 @@ h1, h2, h3, h4, h5, h6, figure {
 }
 
 #fh5co-services-section{
+	display: inline-block;
+	height: 100%;
 	.services{
 		position: relative;
 		i{
@@ -1569,11 +1575,6 @@ h1, h2, h3, h4, h5, h6, figure {
 	@media screen and (max-width: $screen-sm) {
 		padding: 3em 0;
 	}
-	.pricing{
-		display: block;
-		float: left;
-		margin-bottom: 30px;
-	}
 	.price-box {
 		text-align: center;
 		padding: 30px;
@@ -1650,9 +1651,15 @@ h1, h2, h3, h4, h5, h6, figure {
 	background: rgba($brand-black,.03) !important;
 }
 
-
 .animate-box {
 	.js & {
 		opacity: 0;
 	}
+}
+
+div#form-wrapper {
+	position:absolute;
+	top:30%;
+	right:0;
+	left:0;
 }
