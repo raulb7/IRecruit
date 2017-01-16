@@ -409,5 +409,33 @@ class Profile
     {
         // Add your code here
     }
-}
+    /**
+     * @var \Eti\JobeetBundle\Entity\User
+     */
+    private $user;
 
+
+    /**
+     * Set user
+     *
+     * @param \Eti\JobeetBundle\Entity\User $user
+     *
+     * @return Profile
+     */
+    public function setUser(\Eti\JobeetBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Eti\JobeetBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+}

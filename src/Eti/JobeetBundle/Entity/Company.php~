@@ -269,5 +269,12 @@ class Company
     {
         // Add your code here
     }
-}
 
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtAtValue()
+    {
+        // Add your code here
+    }
+}
