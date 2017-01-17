@@ -1,6 +1,59 @@
-{% extends '@EtiJobeet/Company/layout.html.twig' %}
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>iRecruit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-{% block content %}
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="shortcut icon" href="favicon.ico">
+
+        <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,700" rel="stylesheet">
+
+        <!-- Animate.css -->
+        <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}" type="text/css" media="all" />
+        <!-- Icomoon Icon Fonts-->
+        <link rel="stylesheet" href="{{ asset('assets/css/icomoon.css') }}" type="text/css" media="all" />
+        <!-- Bootstrap  -->
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}" type="text/css" media="all" />
+        <!-- Flexslider  -->
+
+        <link rel="stylesheet" href="{{ asset('assets/css/flexslider.css') }}" type="text/css" media="all" />
+        <!-- Owl Carousel  -->
+
+        <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}" type="text/css" media="all" />
+        <link rel="stylesheet" href="{{ asset('assets/css/owl.theme.default.min.css') }}" type="text/css" media="all" />
+        <!-- Theme style  -->
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" type="text/css" media="all" />
+
+    <!-- Modernizr JS -->
+    <script src="{{ asset('assets/js/modernizr-2.6.2.min.js') }}"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="{{ asset('assets/js/respond.min.js') }}"></script>
+    <![endif]-->
+
+</head>
+<body>
+
+
+<div id="fh5co-page">
+    {% include '@EtiJobeet/Company/header.html.twig' %}
+
     <aside id="fh5co-hero" class="js-fullheight">
         <div class="flexslider js-fullheight">
             <ul class="slides">
@@ -23,8 +76,8 @@
             </ul>
         </div>
     </aside>
-    <div id="fh5co-services-section">
-        <div class="container">
+    <div class="container">
+        <div id="fh5co-services-section">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
                     <h2>Categories</h2>
@@ -37,7 +90,7 @@
                         <i class="icon-laptop"></i>
                         <div class="desc">
                             <h3>Information Technology</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
+                            <p>Categories description</p>
                         </div>
                     </div>
                 </div>
@@ -46,7 +99,7 @@
                         <i class="icon-server"></i>
                         <div class="desc">
                             <h3>Administrative</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
+                            <p>Categories description</p>
                         </div>
                     </div>
                 </div>
@@ -55,7 +108,7 @@
                         <i class="icon-money"></i>
                         <div class="desc">
                             <h3>Banking</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
+                            <p>Categories description</p>
                         </div>
                     </div>
                 </div>
@@ -64,7 +117,7 @@
                         <i class="icon-tablet"></i>
                         <div class="desc">
                             <h3>Telecommunications</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
+                            <p>Categories description</p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +126,7 @@
                         <i class="icon-line-chart"></i>
                         <div class="desc">
                             <h3>Marketing</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
+                            <p>Categories description</p>
                         </div>
                     </div>
                 </div>
@@ -82,7 +135,7 @@
                         <i class="icon-pie-chart"></i>
                         <div class="desc">
                             <h3>Quality</h3>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
+                            <p>Categories description</p>
                         </div>
                     </div>
                 </div>
@@ -99,69 +152,33 @@
             </div>
             <div class="row">
                 <div class="col-md-4 animate-box">
-                    <a href="#" class="item-grid text-center">
+                    <a href="" class="item-grid text-center">
                         <div class="image" style="background-image: url({{ asset('assets/images/image_1.jpg') }})"></div>
-                        <div class="v-align">
-                            <div class="v-align-middle">
-                                <h3 class="title">Geographical App</h3>
-                                <h5 class="category">Web Application</h5>
-                            </div>
-                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 animate-box">
-                    <a href="#" class="item-grid text-center">
+                    <a href="" class="item-grid text-center">
                         <div class="image" style="background-image: url({{ asset('assets/images/image_2.jpg') }})"></div>
-                        <div class="v-align">
-                            <div class="v-align-middle">
-                                <h3 class="title">Geographical App</h3>
-                                <h5 class="category">User Interface</h5>
-                            </div>
-                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 animate-box">
-                    <a href="#" class="item-grid text-center">
+                    <a href="" class="item-grid text-center">
                         <div class="image" style="background-image: url({{ asset('assets/images/image_3.jpg') }})"></div>
-                        <div class="v-align">
-                            <div class="v-align-middle">
-                                <h3 class="title">Geographical App</h3>
-                                <h5 class="category">Branded</h5>
-                            </div>
-                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 animate-box">
-                    <a href="#" class="item-grid text-center">
+                    <a href="" class="item-grid text-center">
                         <div class="image" style="background-image: url({{ asset('assets/images/image_4.jpg') }})"></div>
-                        <div class="v-align">
-                            <div class="v-align-middle">
-                                <h3 class="title">Geographical App</h3>
-                                <h5 class="category">Web</h5>
-                            </div>
-                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 animate-box">
-                    <a href="#" class="item-grid text-center">
+                    <a href="" class="item-grid text-center">
                         <div class="image" style="background-image: url({{ asset('assets/images/image_5.jpg') }})"></div>
-                        <div class="v-align">
-                            <div class="v-align-middle">
-                                <h3 class="title">Geographical App</h3>
-                                <h5 class="category">Illustration</h5>
-                            </div>
-                        </div>
                     </a>
                 </div>
                 <div class="col-md-4 animate-box">
-                    <a href="#" class="item-grid text-center">
+                    <a href="" class="item-grid text-center">
                         <div class="image" style="background-image: url({{ asset('assets/images/image_6.jpg') }})"></div>
-                        <div class="v-align">
-                            <div class="v-align-middle">
-                                <h3 class="title">Geographical App</h3>
-                                <h5 class="category">Web Application</h5>
-                            </div>
-                        </div>
                     </a>
                 </div>
                 <div class="col-md-12 text-center animate-box">
@@ -175,7 +192,7 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
                     <h2>Users Feedback</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <p>Check out some of our users' feedback on the website. </p>
                 </div>
             </div>
             <div class="row">
@@ -225,8 +242,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
-                    <h2>MOST WANTED</h2>
-                    <p>The most popular job posts are shown below. </p>
+                    <h2>FEATURED JOBS</h2>
                 </div>
             </div>
             <div class="row">
@@ -236,7 +252,7 @@
                             <h2 class="pricing-plan" align="left">Data</h2>
                             <img src="{{ asset('assets/images/image_5.jpg') }}" alt="user" height="100%" width="100%">
                             <p><b>Manufacturing Engineer</b></p>
-                            <a href="#" class="btn btn-select-plan btn-sm">Apply!</a>
+                            <a href="#" class="btn btn-select-plan btn-sm">View</a>
                         </div>
                     </div>
 
@@ -245,7 +261,7 @@
                             <h2 class="pricing-plan" align="left">Data</h2>
                             <img src="{{ asset('assets/images/image_6.jpg') }}" alt="user" height="100%" width="100%">
                             <p><b>Manufacturing Engineer</b></p>
-                            <a href="#" class="btn btn-select-plan btn-sm">Apply!</a>
+                            <a href="#" class="btn btn-select-plan btn-sm">View</a>
                         </div>
                     </div>
 
@@ -254,7 +270,7 @@
                             <h2 class="pricing-plan" align="left">Data</h2>
                             <img src="{{ asset('assets/images/image_3.jpg') }}" alt="user" height="100%" width="100%">
                             <p><b>Manufacturing Engineer</b></p>
-                            <a href="#" class="btn btn-select-plan btn-sm">Apply!</a>
+                            <a href="#" class="btn btn-select-plan btn-sm">View</a>
                         </div>
                     </div>
 
@@ -263,7 +279,7 @@
                             <h2 class="pricing-plan" align="left">Data</h2>
                             <img src="{{ asset('assets/images/image_5.jpg') }}" alt="user" height="100%" width="100%">
                             <p><b>Manufacturing Engineer</b></p>
-                            <a href="#" class="btn btn-select-plan btn-sm">Apply!</a>
+                            <a href="#" class="btn btn-select-plan btn-sm">View</a>
                         </div>
                     </div>
                 </div>
@@ -280,5 +296,21 @@
             </div>
         </div>
     </div>
-{% endblock %}
+</div>
+    <!-- jQuery -->
+    <script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+    <!-- jQuery Easing -->
+    <script src="{{ asset('assets/js/jquery.easing.1.3.js') }}"></script>
+    <!-- Bootstrap -->
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <!-- Waypoints -->
+    <script src="{{ asset('assets/js/jquery.waypoints.min.js') }}"></script>
+    <!-- Owl Carousel -->
+    <script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
+    <!-- Flexslider -->
+    <script src="{{ asset('assets/js/jquery.flexslider-min.js') }}"></script>
 
+    <!-- MAIN JS -->
+    <script src="{{ asset('assets/js/main.js') }}"></script>
+</body>
+</html>
