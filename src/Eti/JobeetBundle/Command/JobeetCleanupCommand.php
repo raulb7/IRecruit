@@ -15,7 +15,7 @@ class JobeetCleanupCommand extends ContainerAwareCommand {
         $this
             ->setName('eti:jobeet:cleanup')
             ->setDescription('Cleanup Jobeet database')
-            ->addArgument('days', InputArgument::OPTIONAL, 'The email', 90)
+            ->addArgument('days', InputArgument::OPTIONAL, 'The email', 30)
       ;
     }
 

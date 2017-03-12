@@ -19,7 +19,7 @@ security:
 
             logout:
                 path:   /logout
-                target: /
+                target: homepage
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }

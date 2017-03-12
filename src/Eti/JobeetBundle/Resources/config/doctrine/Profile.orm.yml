@@ -20,6 +20,9 @@ Eti\JobeetBundle\Entity\Profile:
         image:
             type: string
             nullable: true
+        curriculumVitae:
+            type: string
+            nullable: true
         phone:
             type: string
             nullable: false
@@ -43,6 +46,7 @@ Eti\JobeetBundle\Entity\Profile:
         user:
             targetEntity: User
             inversedBy:   profile
+            cascade: ["persist"]
             joinColumn:
                 name: id
                 referencedColumnName: id

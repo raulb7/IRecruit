@@ -12,17 +12,6 @@ Eti\JobeetBundle\Entity\Job:
             type: string
             length: 255
             nullable: true
-        company:
-            type: string
-            length: 255
-        logo:
-            type: string
-            length: 255
-            nullable: true
-        url:
-            type: string
-            length: 255
-            nullable: true
         position:
             type: string
             length: 255
@@ -46,9 +35,6 @@ Eti\JobeetBundle\Entity\Job:
             type: boolean
             nullable: true
             column: is_activated
-        email:
-            type: string
-            length: 255
         expiresAt:
             type: datetime
             column: expires_at
@@ -70,8 +56,13 @@ Eti\JobeetBundle\Entity\Job:
             joinColumn:
                 name: category_id
                 referencedColumnName: id
-
-
+        company:
+            targetEntity: Company
+            inversedBy: jobs
+            joinColumn:
+                name: company_id
+                referencedColumnName: id
+                orphanRemoval: true
     manyToMany:
         users:
             targetEntity: User

@@ -385,14 +385,22 @@ class JobController extends Controller
             ->findOneById($id);
 
         $userAlreadyApplied = false;
-        foreach ($job->getUsers() as $user) {
-            if ($user->getId() == $this->getUser()->getId()) {
+        foreach ($job->getUsers() as $user)
+        {
+            if ($user->getId() == $this->getUser()->getId())
+            {
                 $userAlreadyApplied = true;
             }
         }
 
         if (!$userAlreadyApplied) {
             $job->addUser($this->getUser());
+        }
+        else
+        {
+            $response['status'] = 'success';
+            $response['message'] = 'You already applied for this job!';
+            return new JsonResponse($response);
         }
         $response['status'] = 'success';
         $response['message'] = 'Thank you for your application!';

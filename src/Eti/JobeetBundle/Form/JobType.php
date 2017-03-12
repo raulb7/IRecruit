@@ -27,19 +27,9 @@ class JobType extends AbstractType
                     new Assert\NotBlank()
                 ]
             ])
-            ->add('company', 'text', [
+            ->add('company', null, [
                 'constraints' => [
                     new Assert\NotBlank()
-                ]
-            ])
-            ->add('file', 'file', ['label' => 'Company logo', 'required' => false, 
-                'constraints' => [
-                    new Assert\Image()
-                ]
-            ])
-            ->add('url', null, [
-                'constraints' => [
-                    new Assert\Url()
                 ]
             ])
             ->add('position', null, [
@@ -59,13 +49,6 @@ class JobType extends AbstractType
             ])
             ->add('howToApply', 'text', ['label' => 'How to apply?','constraints' => [
                     new Assert\NotBlank()
-                ]
-            ])
-            ->add('isPublic', null, ['label' => 'Public?'])
-            ->add('email', 'email', [
-                'constraints' => [
-                    new Assert\NotBlank(),
-                    new Assert\Email()
                 ]
             ])
         ;

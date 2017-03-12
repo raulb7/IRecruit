@@ -1,0 +1,230 @@
+{% if(userType) == 1 %}
+<div id="userbox" class="types">
+    <form id="signupform" class="form-horizontal" role="form" action="{{ path('user_register') }}">
+        <div class="form-group">
+            <label for="regType_email" class="col-md-3 control-label">E-mail</label>
+            <div class="col-md-9">
+                {{  form_widget(form.email, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.email) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.email) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_username" class="col-md-3 control-label">Username</label>
+            <div class="col-md-9">
+                {{  form_widget(form.username, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.username) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.username) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_password" class="col-md-3 control-label">Password</label>
+            <div class="col-md-9">
+                {{  form_widget(form.password, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.password) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.password) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_firstName" class="col-md-3 control-label">First Name</label>
+            <div class="col-md-9">
+                {{  form_widget(form.firstName, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.firstName) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.firstName) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_lastName" class="col-md-3 control-label">Last Name</label>
+            <div class="col-md-9">
+                {{  form_widget(form.lastName, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.lastName) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.lastName) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_birthDate" class="col-md-3 control-label">Birth date</label>
+            <div class="col-md-9">
+                {{  form_widget(form.birthDate, {'attr' : {'class' : 'form-control','placeholder' : 'Insert Day/Month/Year in numbers'}}) }}
+                {% if form_errors(form.birthDate) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.birthDate) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Picture</label>
+            <div class="col-md-9">
+                {{  form_widget(form.picture, {'attr' : {'class' : 'form-control-file'}}) }}
+                <small id="fileHelp" class="form-text text-muted">Max size: 2Mb.</small>
+                {% if form_errors(form.picture) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.picture) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Curriculum Vitae</label>
+            <div class="col-md-9">
+                {{  form_widget(form.curriculumVitae, {'attr' : {'class' : 'form-control-file'}}) }}
+                {% if form_errors(form.curriculumVitae) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.curriculumVitae) }}</div>
+                {% endif %}
+                <small id="CV" class="form-text text-muted">Max size: 2Mb.</small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_phone" class="col-md-3 control-label">Phone</label>
+            <div class="col-md-9">
+                {{  form_widget(form.phone, {'attr' : {'class' : 'form-control','placeholder' : 'Please enter your phone number'}}) }}
+                {% if form_errors(form.phone) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.phone) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_gender" class="col-md-3 control-label">Gender</label>
+            <div class="col-md-9">
+                {{  form_widget(form.gender, {'attr' : {'class' : 'form-control','placeholder' : 'Male or Female'}}) }}
+                {% if form_errors(form.gender) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.gender) }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="regType_country" class="col-md-3 control-label">Country</label>
+            <div class="col-md-9">
+                {{  form_widget(form.country, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.country) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.country) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_city" class="col-md-3 control-label">City</label>
+            <div class="col-md-9">
+                {{  form_widget(form.city, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.city) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.city) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_homeAddress" class="col-md-3 control-label">Home address</label>
+            <div class="col-md-9">
+                {{  form_widget(form.homeAddress, {'attr' : {'class' : 'form-control','placeholder' : 'Insert your full address'}}) }}
+                {% if form_errors(form.homeAddress) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.homeAddress) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-offset-3 col-md-9" align="right">
+            <button id="btn-signup" type="button" class="btn btn-info">Register Now!</button>
+        </div>
+        {{ form_row(form._token) }}
+    </form>
+</div>
+{% else %}
+<div id="companybox" class="types">
+    <form id="signupform" class="form-horizontal" role="form" action="{{ path('user_register') }}">
+        <div class="form-group">
+            <label for="regType_email2" class="col-md-3 control-label">E-mail</label>
+            <div class="col-md-9">
+                {{  form_widget(form.email2, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.email2) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.email2) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_username2" class="col-md-3 control-label">Username</label>
+            <div class="col-md-9">
+                {{  form_widget(form.username2, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.username2) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.username2) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_password2" class="col-md-3 control-label">Password</label>
+            <div class="col-md-9">
+                {{  form_widget(form.password2, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.password2) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.password2) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_companyName" class="col-md-3 control-label">Company name</label>
+            <div class="col-md-9">
+                {{  form_widget(form.companyName, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.companyName) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.companyName) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_companyUrl" class="col-md-3 control-label">Company website</label>
+            <div class="col-md-9">
+                {{  form_widget(form.companyUrl, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.companyUrl) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.companyUrl) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-md-3 control-label">Company logo</label>
+            <div class="col-md-9">
+                {{  form_widget(form.companyLogo, {'attr' : {'class' : 'form-control-file'}}) }}
+                <small id="fileHelp" class="form-text text-muted">Max size: 2Mb.</small>
+                {% if form_errors(form.companyLogo) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.companyLogo) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_domain" class="col-md-3 control-label">Bussiness / domain</label>
+            <div class="col-md-9">
+                {{  form_widget(form.domain, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.domain) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.domain) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_country2" class="col-md-3 control-label">Country</label>
+            <div class="col-md-9">
+                {{  form_widget(form.country2, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.country2) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.country2) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_city2" class="col-md-3 control-label">City</label>
+            <div class="col-md-9">
+                {{  form_widget(form.city2, {'attr' : {'class' : 'form-control'}}) }}
+                {% if form_errors(form.city2) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.city2) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="regType_headquarterAddress" class="col-md-3 control-label">Headquarter address</label>
+            <div class="col-md-9">
+                {{  form_widget(form.headquarterAddress, {'attr' : {'class' : 'form-control','placeholder' : 'Insert the complete address'}}) }}
+                {% if form_errors(form.headquarterAddress) %}
+                    <div class="alert alert-danger" role="alert">{{ form_errors(form.headquarterAddress) }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-offset-3 col-md-9"  align="right">
+            <button id="btn-signup" type="button" class="btn btn-info">Register Now!</button>
+        </div>
+        {{ form_row(form._token) }}
+    </form>
+</div>
+{% endif %}

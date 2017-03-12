@@ -28,13 +28,29 @@ Eti\JobeetBundle\Entity\Company:
         updatedAt:
             type: datetime
             column: updated_at
+        logo:
+            type: string
+            length: 255
+            nullable: true
+        url:
+            type: string
+            length: 255
+            nullable: true
+        email:
+            type: string
+            length: 255
     oneToOne:
         user:
             targetEntity: User
             inversedBy:   company
+            cascade: ["persist"]
             joinColumn:
                 name: id
                 referencedColumnName: id
+    oneToMany:
+        jobs:
+            targetEntity: Job
+            mappedBy: company
     lifecycleCallbacks:
         prePersist: [ setCreatedAtValue, setTokenValue ]
         preUpdate: [ setUpdatedAtAtValue ]

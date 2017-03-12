@@ -13,99 +13,103 @@
 {% endblock form_errors %}
 
 {% block content %}
-    <div class="container"></br>
-        <h1 align="center">Job creation</h1>
-        <form action="{{ path('eti_job_create') }}" method="post" {{ form_enctype(form) }} style="color:black">
-            <div class="form-group row">
-                {{ form_label(form.company, 'Company name', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
-                <div class="col-10">
-                    {{ form_widget(form.company, {'attr' : {'class' : 'form-control'}}) }}
+<div class="container">
+    <div class="panel panel-info" style="background-color:aliceblue">
+        <div class="panel-heading">
+            <h1 align="center">Job creation</h1>
+        </div>
+        <div style="padding-top:30px;margin:50px;" class="panel-body">
+            <form action="{{ path('eti_job_create') }}" method="post" {{ form_enctype(form) }} style="color:black">
+                <div class="form-group row">
+                    {{ form_label(form.company, 'Company name', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                    <div class="col-10">
+                        {{ form_widget(form.company, {'attr' : {'class' : 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.company) }}
                 </div>
-                {{ form_errors(form.company) }}
-            </div>
 
-            <div class="form-group row">
-                {{ form_label(form.file, 'Company Logo') }}
-                {{ form_widget(form.file, {'attr' : {'class' : 'form-control-file'}}) }}
-                <small class="form-text text-muted">Max size : 2MB</small>
-                {{ form_errors(form.file) }}
-            </div>
-            <div class="form-group row">
-                {{ form_label(form.url, 'Company website', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
-                <div class="col-10">
-                    {{ form_widget(form.url, {'attr' : {'class' : 'form-control', 'type' :  'url'}}) }}
-                </div>
-                {{ form_errors(form.url) }}
-            </div>
+                {#<div class="form-group row">#}
+                    {#<h4><b>Types</b></h4>#}
+                        {#<input class="form-check-input" type="radio" value="option1" checked>#}
+                       {#Full-time<br>#}
+                        {#<input class="form-check-input" type="radio" value="option2">#}
+                        {#Part-time<br>#}
+                        {#<input class="form-check-input" type="radio" value="option2">#}
+                        {#Option two can be something else and selecting it will deselect option one#}
+                {#</div>#}
 
-            {#<div class="form-group row">#}
-                {#<h4><b>Types</b></h4>#}
-                    {#<input class="form-check-input" type="radio" value="option1" checked>#}
-                   {#Full-time<br>#}
-                    {#<input class="form-check-input" type="radio" value="option2">#}
-                    {#Part-time<br>#}
-                    {#<input class="form-check-input" type="radio" value="option2">#}
-                    {#Option two can be something else and selecting it will deselect option one#}
-            {#</div>#}
-
-            {{ dump(form) }}
-            <fieldset class="form-group row">
-                <legend style="color:black"><b>Type</b></legend>
-                <div class="form-check">
-                        <input type="radio" class="form-check-input" name="{{ form.children.type.vars.name }}">
-                        Full-time
+                <fieldset class="form-group row">
+                    <legend style="color:black"><b>Type</b></legend>
+                    <div class="form-check">
+                            <input
+                                type="radio" class="form-check-input"
+                                name="{{ form.children.type.vars.full_name }}"
+                                value="full-time"
+                                {% if form.children.type.vars.full_name == "full-time" %}
+                                    checked="checked"
+                                {% endif %}
+                            >
+                            Full-time
+                    </div>
+                    <div class="form-check">
+                            <input
+                                    type="radio" class="form-check-input"
+                                    name="{{ form.children.type.vars.full_name }}"
+                                    value="part-time"
+                                    {% if form.children.type.vars.full_name == "part-time" %}
+                                        checked="checked"
+                                    {% endif %}
+                            >
+                            Part-time
+                    </div>
+                    <div class="form-check">
+                            <input
+                                    type="radio" class="form-check-input"
+                                    name="{{ form.children.type.vars.full_name }}"
+                                    value="freelance"
+                                    {% if form.children.type.vars.full_name == "freelance" %}
+                                        checked="checked"
+                                    {% endif %}
+                            >
+                            Freelance
+                    </div>
+                    {{ form_errors(form.type) }}
+                </fieldset>
+                <div class="form-group row">
+                    {{ form_label(form.category, 'Category', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                    {{ form_widget(form.category, {'attr' : {'class' : 'form-control'}}) }}
+                    {{ form_errors(form.category) }}
                 </div>
-                <div class="form-check">
-                        <input type="radio" class="form-check-input" name="{{ form.children.type.vars.name }}">
-                        Part-time
+                <div class="form-group row">
+                    {{ form_label(form.position, 'Position', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                    <div class="col-10">
+                        {{ form_widget(form.position, {'attr' : {'class' : 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.position) }}
                 </div>
-                <div class="form-check">
-                        <input type="radio" class="form-check-input" name="{{ form.children.type.vars.name }}">
-                        Freelance
+                <div class="form-group row">
+                    {{ form_label(form.location, 'Location', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                    <div class="col-10">
+                        {{ form_widget(form.location, {'attr' : {'class' : 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.location) }}
                 </div>
-                {{ form_errors(form.type) }}
-            </fieldset>
-            <div class="form-group row">
-                {{ form_label(form.category, 'Category', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
-                {{ form_widget(form.category, {'attr' : {'class' : 'form-control'}}) }}
-                {{ form_errors(form.category) }}
-            </div>
-            <div class="form-group row">
-                {{ form_label(form.position, 'Position', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
-                <div class="col-10">
-                    {{ form_widget(form.position, {'attr' : {'class' : 'form-control'}}) }}
+                <div class="form-group row">
+                    {{ form_label(form.description, 'Description', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                    {{ form_widget(form.description, {'attr' : {'class' : 'form-control','rows' : '3'}}) }}
+                    {{ form_errors(form.description) }}
                 </div>
-                {{ form_errors(form.position) }}
-            </div>
-            <div class="form-group row">
-                {{ form_label(form.location, 'Location', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
-                <div class="col-10">
-                    {{ form_widget(form.location, {'attr' : {'class' : 'form-control'}}) }}
+                <div class="form-group row">
+                    {{ form_label(form.howToApply, 'How to apply?', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                    <div class="col-10">
+                        {{ form_widget(form.howToApply, {'attr' : {'class' : 'form-control'}}) }}
+                    </div>
+                    {{ form_errors(form.howToApply) }}
                 </div>
-                {{ form_errors(form.location) }}
-            </div>
-            <div class="form-group row">
-                {{ form_label(form.description, 'Description', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
-                {{ form_widget(form.description, {'attr' : {'class' : 'form-control','rows' : '3'}}) }}
-                {{ form_errors(form.description) }}
-            </div>
-            <div class="form-group row">
-                {{ form_label(form.howToApply, 'How to apply?', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
-                <div class="col-10">
-                    {{ form_widget(form.howToApply, {'attr' : {'class' : 'form-control'}}) }}
-                </div>
-                {{ form_errors(form.howToApply) }}
-            </div>
-            <div class="form-group row">
-                {{ form_label(form.email, 'Contact e-mail', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
-                <div class="col-10">
-                    {{ form_widget(form.email, {'attr' : {'class' : 'form-control', 'type' : 'email'}}) }}
-                </div>
-                {{ form_errors(form.email) }}
-            </div>
-
-            <button type="submit" class="btn btn-primary pull-right" name="submit">CREATE JOB</button>
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
-        </form>
-
+                 {{ form_widget(form.submit, {'attr' : {'class' : 'btn btn-primary pull-right'}}) }}
+                {{ form_row(form._token) }}
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}

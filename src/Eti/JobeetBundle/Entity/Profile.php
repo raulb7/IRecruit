@@ -438,4 +438,33 @@ class Profile
     {
         return $this->user;
     }
+    /**
+     * @var string
+     */
+    private $curriculumVitae;
+
+
+    /**
+     * Set curriculumVitae
+     *
+     * @param string $curriculumVitae
+     *
+     * @return Profile
+     */
+    public function setCurriculumVitae($curriculumVitae)
+    {
+        $this->curriculumVitae = $curriculumVitae;
+
+        return $this;
+    }
+
+    /**
+     * Get curriculumVitae
+     *
+     * @return string
+     */
+    public function getCurriculumVitae()
+    {
+        return $this->curriculumVitae;
+    }
 }

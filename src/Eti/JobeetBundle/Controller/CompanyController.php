@@ -51,22 +51,16 @@ class CompanyController extends Controller
         $entity = new Job();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
-
-        var_dump($form->getData());
+        
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('eti_job_preview', [
-                'company' => $entity->getCompanySlug(),
-                'location' => $entity->getLocationSlug(),
-                'token' => $entity->getToken(),
-                'position' => $entity->getPositionSlug()
-            ]));
+            return $this->redirect($this->generateUrl('company_dashboard'));
         }
 
-        return $this->render('EtiJobeetBundle:Job:new.html.twig', array(
+        return $this->render('@EtiJobeet/Company/Job/new.html.twig', array(
             'entity' => $entity,
             'form'   => $form->createView(),
         ));
@@ -86,7 +80,7 @@ class CompanyController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'CREATE JOB'));
 
         return $form;
     }
@@ -95,15 +89,29 @@ class CompanyController extends Controller
      * @Route("/company/job/new", name="eti_job_new")
      */
     public function newJobAction()
-    {
-        $entity = new Job();
-        $entity->setType('full-time');
-        $form   = $this->createCreateForm($entity);
+{
+    $entity = new Job();
+    $entity->setType('full-time');
+    $form   = $this->createCreateForm($entity);
 
-        return $this->render('@EtiJobeet/Company/Job/new.html.twig', array(
-            'entity' => $entity,
-            'form'   => $form->createView(),
-        ));
+    return $this->render('@EtiJobeet/Company/Job/new.html.twig', array(
+        'entity' => $entity,
+        'form'   => $form->createView(),
+    ));
+
+
+}
+    /**
+     * @Route("/job/modaldisplay/{id}", name="eti_job_modal_display")
+     */
+    public function newJobModalDisplayAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $job = $em->getRepository('EtiJobeetBundle:Job')->findOneById($id);
+
+        return $this->render('@EtiJobeet/Company/Job/modalDisplay.html.twig', [
+            'job' => $job
+        ]);
     }
 }
 

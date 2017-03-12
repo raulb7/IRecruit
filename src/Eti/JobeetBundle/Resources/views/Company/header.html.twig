@@ -4,8 +4,12 @@
             <h1><a href="" name="top">iRecruit</a></h1>
             <nav role="navigation">
                 <ul>
-                    <li><a href="{{ path('login') }}">LOG IN</a></li>
-                    <li class="cta"><a href="#">POST A JOB</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('logout') }}">LOG OUT</a></li>
+                    {% else %}
+                        <li><a href="{{ path('login') }}">LOG IN</a></li>
+                    {% endif %}
+                    <li class="cta"><a href="{{ path('eti_job_new') }}">POST A JOB</a></li>
                 </ul>
             </nav>
         </div>

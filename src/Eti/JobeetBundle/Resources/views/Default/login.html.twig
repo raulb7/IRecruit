@@ -7,7 +7,7 @@
                     <div class="panel-title" style="color:black"><b>Login</b></div>
                     <div style="float:right; font-size: 80%; position: relative; top:-20px"><a href="#" style="color:red"><b>Forgot password?</b></a></div>
                 </div>
-                <div style="padding-top:30px" class="panel-body" >
+                <div style="padding-top:30px" class="panel-body">
                     <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                     <form id="loginform" action="{{ path('login_check') }}" class="form-horizontal" method="post">
                         <div style="margin-bottom: 25px" class="input-group">
@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         {% if error %}
-                            </br><div class="alert alert-danger" role="alert">Username or password is incorrect. Please try again!</div>
+                            <div class="alert alert-danger" role="alert">Username or password is incorrect. Please try again!</div>
                         {% endif %}
                         <div style="margin-top:10px" class="form-group">
                             <div class="col-sm-12 controls" align="center">
@@ -37,7 +37,7 @@
                             <div class="col-md-12 control">
                                 <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
                                     Don't have an account?
-                                    <a href="#" onClick="$('#loginbox').hide(); $('#registerbox').show()" style="color:black">
+                                    <a href="#" id="regButton" onClick="$('#loginbox').hide(); $('#registerbox').show()" style="color:black">
                                         Register Here
                                     </a>
                                 </div>
@@ -57,153 +57,69 @@
                         <option value="userbox">Normal user</option>
                     </select><br>
                 </div>
-                <div class="panel-body">
-                    <div id="userbox" style="display:none" class="types">
-                        <form id="signupform" class="form-horizontal" role="form">
-                                <div class="form-group">
-                                    <label for="email" class="col-md-3 control-label">E-mail</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="email" placeholder="E-mail Address">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email" class="col-md-3 control-label">Username</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="email" placeholder="username">
-                                    </div>
-                                </div>
-                            <div class="form-group">
-                                <label for="password" class="col-md-3 control-label">Password</label>
-                                <div class="col-md-9">
-                                    <input type="password" class="form-control" name="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">First Name</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="firstname" placeholder="First Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Last Name</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="lastname" placeholder="Last Name">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Birth date</label>
-                                <div class="col-md-9">
-                                    <input type="date" class="form-control" name="birthDate">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Picture</label>
-                                <div class="col-md-9">
-                                    <input type="file" class="form-control-file">
-                                    <small id="fileHelp" class="form-text text-muted">Max size: 2Mb.</small>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Phone</label>
-                                <div class="col-md-9">
-                                    <input type="tel" class="form-control" name="phone" placeholder="Enter your phone number">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Gender</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="gender">
-                                </div>
-                            </div>
+                <div class="panel-body panel-info-js">
 
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Country</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="country">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">City</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="city">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Home address</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="homeaddress">
-                                </div>
-                            </div>
-                                <div class="col-md-offset-3 col-md-9" align="right">
-                                    <button id="btn-signup" type="button" class="btn btn-info">Register Now!</button>
-                                </div>
-                        </form>
-                    </div>
-                    <div id="companybox" style="display:none" class="types">
-                        <form id="signupform" class="form-horizontal" role="form">
-                            <div class="form-group">
-                                <label for="email" class="col-md-3 control-label">E-mail</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="email" placeholder="E-mail Address">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Username</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="email" placeholder="username">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Password</label>
-                                <div class="col-md-9">
-                                    <input type="password" class="form-control" name="password" placeholder="Password">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Company name</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="companyName">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Company logo</label>
-                                <div class="col-md-9">
-                                    <input type="file" class="form-control-file">
-                                    <small id="fileHelp" class="form-text text-muted">Max size: 2Mb.</small>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Bussiness / domain</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="activityDomain">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Country</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="country">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">City</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="city">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Headquarter address</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="HQ">
-                                </div>
-                            </div>
-                                <div class="col-md-offset-3 col-md-9"  align="right">
-                                    <button id="btn-signup" type="button" class="btn btn-info">Register Now!</button>
-                                </div>
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
 
 {% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            var userType = $('#typeselector').val() == "userbox" ? 1 : 2;
+            $('#typeselector').change(function () {
+                if($(this).val()=='userbox') {
+                    userType = 1;
+                }
+                else
+                {
+                    userType = 2;
+                }
 
+                $.ajax({
+                    url: '{{ path('user_register') }}?user_type=' + userType,
+                    data: {},
+                    success: function (data) {
+                        $('.panel-info-js').html(data.template);
+                    }
+                });
+            });
+
+            $('#regButton').click(function () {
+                if (!$('.panel-info-js').children().length) {
+                    $.ajax({
+                        url: '{{ path('user_register') }}?user_type=' + userType,
+                        data: {},
+                        success: function (data) {
+                            $('.panel-info-js').html(data.template);
+                        }
+                    });
+                }
+            });
+
+            $(document).on('click','#btn-signup',function(){
+                var form = $('.panel-info-js #signupform').get(0);
+                $.ajax({
+                    url: '{{ path('user_register') }}?user_type=' + userType,
+                    type: 'post',
+                    data: new FormData(form),
+                    processData: false,
+                    contentType: false,
+                    success: function (data) {
+                        if(data.message && data.message!="success"){
+                            alert(data.message);
+                        } else if(data.message=="success") {
+                            alert('The registration was successful. You will now be redirected to the login page.');
+                            window.location.href="{{ path('login') }}";
+
+                        } else {
+                            $('.panel-info-js').html(data.template);
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}

@@ -27,21 +27,6 @@ class Job
     /**
      * @var string
      */
-    private $company;
-
-    /**
-     * @var string
-     */
-    private $logo;
-
-    /**
-     * @var string
-     */
-    private $url;
-
-    /**
-     * @var string
-     */
     private $position;
 
     /**
@@ -72,12 +57,7 @@ class Job
     /**
      * @var boolean
      */
-    private $isActivated;
-
-    /**
-     * @var string
-     */
-    private $email;
+    private $isActivated = true;
 
     /**
      * @var \DateTime
@@ -147,79 +127,6 @@ class Job
     {
         return $this->type;
     }
-
-    /**
-     * Set company
-     *
-     * @param string $company
-     *
-     * @return Job
-     */
-    public function setCompany($company)
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    /**
-     * Get company
-     *
-     * @return string
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
-     * Set logo
-     *
-     * @param string $logo
-     *
-     * @return Job
-     */
-    public function setLogo($logo)
-    {
-        $this->logo = $logo;
-
-        return $this;
-    }
-
-    /**
-     * Get logo
-     *
-     * @return string
-     */
-    public function getLogo()
-    {
-        return $this->logo;
-    }
-
-    /**
-     * Set url
-     *
-     * @param string $url
-     *
-     * @return Job
-     */
-    public function setUrl($url)
-    {
-        $this->url = $url;
-
-        return $this;
-    }
-
-    /**
-     * Get url
-     *
-     * @return string
-     */
-    public function getUrl()
-    {
-        return $this->url;
-    }
-
     /**
      * Set position
      *
@@ -299,6 +206,7 @@ class Job
      *
      * @return Job
      */
+
     public function setHowToApply($howToApply)
     {
         $this->howToApply = $howToApply;
@@ -386,30 +294,6 @@ class Job
     public function getIsActivated()
     {
         return $this->isActivated;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     *
-     * @return Job
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 
     /**
@@ -550,13 +434,6 @@ class Job
     {
         $this->updatedAt = new \DateTime();
     }
-
-
-    public function getCompanySlug()
-    {
-        return Jobeet::slugify($this->getCompany());
-    }
- 
     public function getPositionSlug()
     {
         return Jobeet::slugify($this->getPosition());
@@ -684,7 +561,7 @@ class Job
     public function setTokenValue()
     {
         if (! $this->getToken()) {
-            $this->token = sha1($this->getEmail().rand(11111, 99999));
+            $this->token = sha1($this->getId().rand(11111, 99999));
         }
     }
 
@@ -725,9 +602,6 @@ class Job
         return array(
             'category'     => $this->getCategory()->getName(),
             'type'         => $this->getType(),
-            'company'      => $this->getCompany(),
-            'logo'         => $this->getLogo() ? 'http://' . $host . '/uploads/jobs/' . $this->getLogo() : null,
-            'url'          => $this->getUrl(),
             'position'     => $this->getPosition(),
             'location'     => $this->getLocation(),
             'description'  => $this->getDescription(),
@@ -777,7 +651,6 @@ class Job
  
         // index job fields
         $doc->addField(\Zend_Search_Lucene_Field::UnStored('position', $this->getPosition(), 'utf-8'));
-        $doc->addField(\Zend_Search_Lucene_Field::UnStored('company', $this->getCompany(), 'utf-8'));
         $doc->addField(\Zend_Search_Lucene_Field::UnStored('location', $this->getLocation(), 'utf-8'));
         $doc->addField(\Zend_Search_Lucene_Field::UnStored('description', $this->getDescription(), 'utf-8'));
  
@@ -842,5 +715,34 @@ class Job
     public function getUsers()
     {
         return $this->users;
+    }
+    /**
+     * @var \Eti\JobeetBundle\Entity\Company
+     */
+    private $company;
+
+
+    /**
+     * Set company
+     *
+     * @param \Eti\JobeetBundle\Entity\Company $company
+     *
+     * @return Job
+     */
+    public function setCompany(\Eti\JobeetBundle\Entity\Company $company = null)
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    /**
+     * Get company
+     *
+     * @return \Eti\JobeetBundle\Entity\Company
+     */
+    public function getCompany()
+    {
+        return $this->company;
     }
 }

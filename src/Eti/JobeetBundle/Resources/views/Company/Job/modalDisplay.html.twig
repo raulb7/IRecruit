@@ -1,0 +1,36 @@
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="row">
+                    <div class="col-sm-8 m-b-md ">
+                        <h4 class="modal-title" id="myModalLabel">{{ job.position }}</h4>
+                    </div>
+                    <div class="col-sm-4 m-b-md text-sm-right">
+                        <img src="{{ asset('assets/images/' ~ job.company.logo) }}" />
+                    </div>
+                </div>
+                <h4 class="modal-title" id="myModalLabel">{{ job.position }} and company logo on the right</h4>
+            </div>
+            <div class="modal-body" style="color:black">
+                <h3><b>Company</b></h3>
+                <p>{{ job.company.name }}</p>
+                <p>{{ job.company.activityDomain }}</p>
+                <p>{{ job.company.url }}</p>
+                <h3><b>Job</b></h3>
+                <p>{{ job.type }}</p>
+                <p>{{ job.description|nl2br }}</p>
+                <h3><b>Location</b></h3>
+                <p>{{ job.location }}</p>
+                <h3><b>How to apply?</b></h3>
+                <p>{{ job.howtoapply }}</p><br>
+                <p align="right">Expires at: {{ job.expiresAt|date }}</p><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="background:orange"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                <button type="button" class="btn btn-primary btn-apply-js" style="background:green"><span class="glyphicon glyphicon-ok"></span> Apply!</button>
+            </div>
+    </div>
+</div>
+
+
