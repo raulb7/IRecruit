@@ -28,9 +28,9 @@ test:
     path:   /test
     defaults:  { _controller: EtiJobeetBundle:Default:test }
 
-test2:
-    path:   /test2
-    defaults:  { _controller: EtiJobeetBundle:Default:test2 }
+homepage:
+    path:   /home
+    defaults:  { _controller: EtiJobeetBundle:Default:homepage }
 
 
 company_dashboard:
@@ -44,3 +44,12 @@ user_dashboard:
 joblists:
     path:   /joblists
     defaults:  { _controller: EtiJobeetBundle:Company:jobList }
+
+profile:
+    path:   /user/profile
+    defaults:  { _controller: EtiJobeetBundle:User:profile}
+
+profile:
+    path:   /company/profile
+    defaults:  { _controller: EtiJobeetBundle:Company:profile}
+

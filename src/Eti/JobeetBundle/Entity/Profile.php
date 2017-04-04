@@ -2,11 +2,16 @@
 
 namespace Eti\JobeetBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Profile
  */
 class Profile
 {
+    const GENDER_MALE = 0;
+    const GENDER_FEMALE = 1;
+
     /**
      * @var integer
      */
@@ -466,5 +471,179 @@ class Profile
     public function getCurriculumVitae()
     {
         return $this->curriculumVitae;
+    }
+    /**
+     * @var string
+     */
+    private $birthPlace;
+
+    /**
+     * @var string
+     */
+    private $skills;
+
+    /**
+     * @var string
+     */
+    private $objectives;
+
+    /**
+     * @var string
+     */
+    private $description;
+
+
+    /**
+     * Set birthPlace
+     *
+     * @param string $birthPlace
+     *
+     * @return Profile
+     */
+    public function setBirthPlace($birthPlace)
+    {
+        $this->birthPlace = $birthPlace;
+
+        return $this;
+    }
+
+    /**
+     * Get birthPlace
+     *
+     * @return string
+     */
+    public function getBirthPlace()
+    {
+        return $this->birthPlace;
+    }
+
+    /**
+     * Set skills
+     *
+     * @param string $skills
+     *
+     * @return Profile
+     */
+    public function setSkills($skills)
+    {
+        $this->skills = $skills;
+
+        return $this;
+    }
+
+    /**
+     * Get skills
+     *
+     * @return string
+     */
+    public function getSkills()
+    {
+        return $this->skills;
+    }
+
+    /**
+     * Set objectives
+     *
+     * @param string $objectives
+     *
+     * @return Profile
+     */
+    public function setObjectives($objectives)
+    {
+        $this->objectives = $objectives;
+
+        return $this;
+    }
+
+    /**
+     * Get objectives
+     *
+     * @return string
+     */
+    public function getObjectives()
+    {
+        return $this->objectives;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Profile
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    /**
+     * @var string
+     */
+    private $facebook;
+
+    /**
+     * @var string
+     */
+    private $linkedin;
+
+
+    /**
+     * Set facebook
+     *
+     * @param string $facebook
+     *
+     * @return Profile
+     */
+    public function setFacebook($facebook)
+    {
+        $this->facebook = $facebook;
+
+        return $this;
+    }
+
+    /**
+     * Get facebook
+     *
+     * @return string
+     */
+    public function getFacebook()
+    {
+        return $this->facebook;
+    }
+
+    /**
+     * Set linkedin
+     *
+     * @param string $linkedin
+     *
+     * @return Profile
+     */
+    public function setLinkedin($linkedin)
+    {
+        $this->linkedin = $linkedin;
+
+        return $this;
+    }
+
+    /**
+     * Get linkedin
+     *
+     * @return string
+     */
+    public function getLinkedin()
+    {
+        return $this->linkedin;
     }
 }

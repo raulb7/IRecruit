@@ -561,7 +561,7 @@ class Job
     public function setTokenValue()
     {
         if (! $this->getToken()) {
-            $this->token = sha1($this->getId().rand(11111, 99999));
+            $this->token = sha1($this->getId().rand(11111, 99999999));
         }
     }
 

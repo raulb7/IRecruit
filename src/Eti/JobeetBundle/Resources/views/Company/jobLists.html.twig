@@ -15,13 +15,13 @@
                 <div class="container">
                     <div class="row">
                         {% for job in pagination %}
-                            <div class="col-md-3 animate-box" data-job-id="{{ job.id }}">
+                            <div class="col-md-3 animate-box">
                                 <div class="price-box">
-                                    <h2 class="pricing-plan" align="left">{{ job.createdAt|date }}</h2>
-                                    <img src="{{ asset('assets/images/' ~ job.company.logo) }}" alt="user" height="100%" width="100%">
+                                    <h2 class="pricing-plan" align="left" style="font-size:70%">{{ job.createdAt|date }}</h2>
+                                    <img src="{{ asset('assets/images/upload/' ~ job.company.logo) }}" alt="user" height="100%" width="100%">
                                     <p><b>{{ job.position }}</b></p>
-                                    <button type="button" class="btn btn-primary open-modal-js" data-toggle="modal" data-target="#myModal">
-                                       View
+                                    <button type="button" data-job-id="{{ job.id }}" class="btn btn-primary open-modal-js" data-toggle="modal" data-target="#myModal">
+                                        View
                                     </button>
                                 </div>
                             </div>
@@ -44,8 +44,9 @@
     {{ parent() }}
     <script>
         $(document).ready(function () {
-            $('#myModal').on('show.bs.modal', function() {
-                var jobId = $('.open-modal-js').parent().parent().data('job-id');
+            $('#myModal').on('show.bs.modal', function(e) {
+                var $invoker = $(e.relatedTarget);
+                var jobId = $invoker.data('job-id');
                 var initialPath = "{{ path('eti_job_modal_display', {'id': -1}) }}";
                 var path = initialPath.replace("-1", jobId);
                 $.ajax({
@@ -57,8 +58,9 @@
             });
         });
         $(document).ready(function () {
-            $('#myModal').on('click', '.btn-apply-js', function () {
-                var jobId = $('.open-modal-js').parent().parent().data('job-id');
+            $('#myModal').on('click', '.btn-apply-js', function (e) {
+                var $invoker = $(e.relatedTarget);
+                var jobId = $invoker.data('job-id');
                 var initialPath = "{{ path('eti_apply_job', {'id': "00"}) }}";
                 var path = initialPath.replace("00", jobId);
                 console.log(path);

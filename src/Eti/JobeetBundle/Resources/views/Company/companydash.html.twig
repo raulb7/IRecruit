@@ -1,8 +1,53 @@
-{% extends '@EtiJobeet/Company/layout.html.twig' %}
-
+{% extends '@EtiJobeet/dashlayout.html.twig' %}
 {% block content %}
-            <div class="container">
+    <!-- Left side column. contains the logo and sidebar -->
+    <aside class="main-sidebar">
+        <!-- sidebar: style can be found in sidebar.less -->
+        <section class="sidebar">
+            <!-- Sidebar user panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="{{ asset('assets/dashboard/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p style="font-size: 130%">Alexander Pierce</p>
+                    <a href="#" style="font-size: 130%"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div><br>
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header" style="font-size: 130%">MAIN NAVIGATION</li>
+                <li class="treeview">
+                    <a href="{{ path('profile') }}">
+                        <i class="fa fa-edit" style="font-size: 120%"></i> <span style="font-size: 130%">Profile</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-folder" style="font-size: 120%"></i> <span style="font-size: 130%">My Jobs</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
 
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Main dashboard
+            </h1>
+        </section>
+        <section class="content">
+            <div class="row">
+                <section class="col-lg-7 connectedSortable">
+                </section>
             </div>
-
+        </section>
+    </div>
+    </div>
+    <div class="control-sidebar-bg"></div>
+    <!-- ./wrapper -->
 {% endblock %}

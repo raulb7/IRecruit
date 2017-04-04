@@ -4,13 +4,12 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <div class="row">
                     <div class="col-sm-8 m-b-md ">
-                        <h4 class="modal-title" id="myModalLabel">{{ job.position }}</h4>
+                        <h4 class="modal-title" id="myModalLabel" style="font-size:150%"><b>{{ job.position }}</b></h4>
                     </div>
                     <div class="col-sm-4 m-b-md text-sm-right">
-                        <img src="{{ asset('assets/images/' ~ job.company.logo) }}" />
+                        <img src="{{ asset('assets/images/upload/' ~ job.company.logo) }}"  style="width: 150px; height: 150px;"/>
                     </div>
                 </div>
-                <h4 class="modal-title" id="myModalLabel">{{ job.position }} and company logo on the right</h4>
             </div>
             <div class="modal-body" style="color:black">
                 <h3><b>Company</b></h3>

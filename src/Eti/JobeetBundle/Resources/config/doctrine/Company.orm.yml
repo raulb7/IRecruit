@@ -39,6 +39,12 @@ Eti\JobeetBundle\Entity\Company:
         email:
             type: string
             length: 255
+        phone:
+            type: string
+            nullable: true
+        description:
+            type: text
+            nullable: true
     oneToOne:
         user:
             targetEntity: User
