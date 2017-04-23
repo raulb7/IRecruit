@@ -93,14 +93,14 @@ class UserController extends Controller
 
         return $this->render("@EtiJobeet/User/uploadcv.html.twig",["form"=>$form->createView(),"isSuccess"=>$isSuccess]);
     }
-    
+
     /**
      * @Route("/user/cv", name="user_cv")
      */
     public function viewPDFAction()
     {
         $user = $this->getUser();
-        if(!$user && $this->isGranted('ROLE_COMPANY'))
+        if($user && $this->isGranted('ROLE_COMPANY'))
             throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
 
         $path = $this->getParameter('uploaddir').'\\';

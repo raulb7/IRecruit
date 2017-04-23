@@ -26,12 +26,12 @@ class User extends BaseUser
         $this->jobs = new ArrayCollection();
     }
     /**
-     * @var \Eti\JobeetBundle\Entity\Company
+     * @var \Eti\JobeetBundle\Entity\CProfile
      */
     private $company;
 
     /**
-     * @var \Eti\JobeetBundle\Entity\Profile
+     * @var \Eti\JobeetBundle\Entity\UProfile
      */
     private $profile;
 
@@ -39,11 +39,11 @@ class User extends BaseUser
     /**
      * Set company
      *
-     * @param \Eti\JobeetBundle\Entity\Company $company
+     * @param \Eti\JobeetBundle\Entity\CProfile $company
      *
      * @return User
      */
-    public function setCompany(\Eti\JobeetBundle\Entity\Company $company = null)
+    public function setCompany(\Eti\JobeetBundle\Entity\CProfile $company = null)
     {
         $this->company = $company;
 
@@ -53,7 +53,7 @@ class User extends BaseUser
     /**
      * Get company
      *
-     * @return \Eti\JobeetBundle\Entity\Company
+     * @return \Eti\JobeetBundle\Entity\CProfile
      */
     public function getCompany()
     {
@@ -63,11 +63,11 @@ class User extends BaseUser
     /**
      * Set profile
      *
-     * @param \Eti\JobeetBundle\Entity\Profile $profile
+     * @param \Eti\JobeetBundle\Entity\UProfile $profile
      *
      * @return User
      */
-    public function setProfile(\Eti\JobeetBundle\Entity\Profile $profile = null)
+    public function setProfile(\Eti\JobeetBundle\Entity\UProfile $profile = null)
     {
         $this->profile = $profile;
 
@@ -77,7 +77,7 @@ class User extends BaseUser
     /**
      * Get profile
      *
-     * @return \Eti\JobeetBundle\Entity\Profile
+     * @return \Eti\JobeetBundle\Entity\UProfile
      */
     public function getProfile()
     {

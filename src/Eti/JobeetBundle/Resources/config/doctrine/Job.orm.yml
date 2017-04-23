@@ -57,7 +57,7 @@ Eti\JobeetBundle\Entity\Job:
                 name: category_id
                 referencedColumnName: id
         company:
-            targetEntity: Company
+            targetEntity: Eti\JobeetBundle\Entity\CProfile
             inversedBy: jobs
             joinColumn:
                 name: company_id

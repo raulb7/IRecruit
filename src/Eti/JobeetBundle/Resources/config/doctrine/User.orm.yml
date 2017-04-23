@@ -8,10 +8,10 @@ Eti\JobeetBundle\Entity\User:
                 strategy: AUTO
     oneToOne:
         company:
-            targetEntity: Company
+            targetEntity: Eti\JobeetBundle\Entity\CProfile
             mappedBy:     user
         profile:
-            targetEntity: Profile
+            targetEntity: UProfile
             mappedBy:     user
 
     manyToMany:

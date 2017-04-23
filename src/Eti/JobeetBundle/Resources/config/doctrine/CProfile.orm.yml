@@ -1,7 +1,7 @@
-Eti\JobeetBundle\Entity\Company:
+Eti\JobeetBundle\Entity\CProfile:
     type: entity
-    table: company
-    repositoryClass: Eti\JobeetBundle\Repository\CompanyRepository
+    table: c_profile
+    repositoryClass: Eti\JobeetBundle\Repository\CProfileRepository
     id:
         id:
             type: integer
@@ -36,9 +36,6 @@ Eti\JobeetBundle\Entity\Company:
             type: string
             length: 255
             nullable: true
-        email:
-            type: string
-            length: 255
         phone:
             type: string
             nullable: true
@@ -47,7 +44,7 @@ Eti\JobeetBundle\Entity\Company:
             nullable: true
     oneToOne:
         user:
-            targetEntity: User
+            targetEntity: Eti\JobeetBundle\Entity\User
             inversedBy:   company
             cascade: ["persist"]
             joinColumn:

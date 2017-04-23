@@ -5,9 +5,9 @@ namespace Eti\JobeetBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Profile
+ * UProfile
  */
-class Profile
+class UProfile
 {
     const GENDER_MALE = 0;
     const GENDER_FEMALE = 1;
@@ -100,7 +100,7 @@ class Profile
      *
      * @param string $firstName
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setFirstName($firstName)
     {
@@ -124,7 +124,7 @@ class Profile
      *
      * @param string $lastName
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setLastName($lastName)
     {
@@ -148,7 +148,7 @@ class Profile
      *
      * @param \DateTime $birthDate
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setBirthDate($birthDate)
     {
@@ -172,7 +172,7 @@ class Profile
      *
      * @param string $image
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setImage($image)
     {
@@ -196,7 +196,7 @@ class Profile
      *
      * @param string $phone
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setPhone($phone)
     {
@@ -220,7 +220,7 @@ class Profile
      *
      * @param boolean $gender
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setGender($gender)
     {
@@ -244,7 +244,7 @@ class Profile
      *
      * @param string $address
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setAddress($address)
     {
@@ -268,7 +268,7 @@ class Profile
      *
      * @param string $city
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setCity($city)
     {
@@ -292,7 +292,7 @@ class Profile
      *
      * @param string $country
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setCountry($country)
     {
@@ -316,7 +316,7 @@ class Profile
      *
      * @param \DateTime $createdAt
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setCreatedAt($createdAt)
     {
@@ -340,7 +340,7 @@ class Profile
      *
      * @param \DateTime $updatedAt
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -363,7 +363,7 @@ class Profile
      *
      * @param \Eti\JobeetBundle\Entity\Category $category
      *
-     * @return Profile
+     * @return UProfile
      */
     public function addCategory(\Eti\JobeetBundle\Entity\Category $category)
     {
@@ -425,7 +425,7 @@ class Profile
      *
      * @param \Eti\JobeetBundle\Entity\User $user
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setUser(\Eti\JobeetBundle\Entity\User $user = null)
     {
@@ -454,7 +454,7 @@ class Profile
      *
      * @param string $curriculumVitae
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setCurriculumVitae($curriculumVitae)
     {
@@ -498,7 +498,7 @@ class Profile
      *
      * @param string $birthPlace
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setBirthPlace($birthPlace)
     {
@@ -522,7 +522,7 @@ class Profile
      *
      * @param string $skills
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setSkills($skills)
     {
@@ -546,7 +546,7 @@ class Profile
      *
      * @param string $objectives
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setObjectives($objectives)
     {
@@ -570,7 +570,7 @@ class Profile
      *
      * @param string $description
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setDescription($description)
     {
@@ -604,7 +604,7 @@ class Profile
      *
      * @param string $facebook
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setFacebook($facebook)
     {
@@ -628,7 +628,7 @@ class Profile
      *
      * @param string $linkedin
      *
-     * @return Profile
+     * @return UProfile
      */
     public function setLinkedin($linkedin)
     {

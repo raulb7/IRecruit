@@ -717,7 +717,7 @@ class Job
         return $this->users;
     }
     /**
-     * @var \Eti\JobeetBundle\Entity\Company
+     * @var \Eti\JobeetBundle\Entity\CProfile
      */
     private $company;
 
@@ -725,11 +725,11 @@ class Job
     /**
      * Set company
      *
-     * @param \Eti\JobeetBundle\Entity\Company $company
+     * @param \Eti\JobeetBundle\Entity\CProfile $company
      *
      * @return Job
      */
-    public function setCompany(\Eti\JobeetBundle\Entity\Company $company = null)
+    public function setCompany(\Eti\JobeetBundle\Entity\CProfile $company = null)
     {
         $this->company = $company;
 
@@ -739,7 +739,7 @@ class Job
     /**
      * Get company
      *
-     * @return \Eti\JobeetBundle\Entity\Company
+     * @return \Eti\JobeetBundle\Entity\CProfile
      */
     public function getCompany()
     {

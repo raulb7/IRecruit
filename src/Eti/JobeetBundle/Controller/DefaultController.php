@@ -2,8 +2,8 @@
 
 namespace Eti\JobeetBundle\Controller;
 
-use Eti\JobeetBundle\Entity\Company;
-use Eti\JobeetBundle\Entity\Profile;
+use Eti\JobeetBundle\Entity\CProfile;
+use Eti\JobeetBundle\Entity\UProfile;
 use Eti\JobeetBundle\Entity\User;
 use Eti\JobeetBundle\Form\RegisterType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;

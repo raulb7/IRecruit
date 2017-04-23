@@ -3,9 +3,9 @@
 namespace Eti\JobeetBundle\Entity;
 
 /**
- * Company
+ * CProfile
  */
-class Company
+class CProfile
 {
     /**
      * @var integer
@@ -68,7 +68,7 @@ class Company
      *
      * @param string $name
      *
-     * @return Company
+     * @return CProfile
      */
     public function setName($name)
     {
@@ -92,7 +92,7 @@ class Company
      *
      * @param string $activityDomain
      *
-     * @return Company
+     * @return CProfile
      */
     public function setActivityDomain($activityDomain)
     {
@@ -116,7 +116,7 @@ class Company
      *
      * @param string $city
      *
-     * @return Company
+     * @return CProfile
      */
     public function setCity($city)
     {
@@ -140,7 +140,7 @@ class Company
      *
      * @param string $country
      *
-     * @return Company
+     * @return CProfile
      */
     public function setCountry($country)
     {
@@ -164,7 +164,7 @@ class Company
      *
      * @param string $address
      *
-     * @return Company
+     * @return CProfile
      */
     public function setAddress($address)
     {
@@ -188,7 +188,7 @@ class Company
      *
      * @param \DateTime $createdAt
      *
-     * @return Company
+     * @return CProfile
      */
     public function setCreatedAt($createdAt)
     {
@@ -212,7 +212,7 @@ class Company
      *
      * @param \DateTime $updatedAt
      *
-     * @return Company
+     * @return CProfile
      */
     public function setUpdatedAt($updatedAt)
     {
@@ -236,7 +236,7 @@ class Company
      *
      * @param \Eti\JobeetBundle\Entity\User $user
      *
-     * @return Company
+     * @return CProfile
      */
     public function setUser(\Eti\JobeetBundle\Entity\User $user = null)
     {
@@ -315,7 +315,7 @@ class Company
      *
      * @param string $logo
      *
-     * @return Company
+     * @return CProfile
      */
     public function setLogo($logo)
     {
@@ -339,7 +339,7 @@ class Company
      *
      * @param string $url
      *
-     * @return Company
+     * @return CProfile
      */
     public function setUrl($url)
     {
@@ -363,7 +363,7 @@ class Company
      *
      * @param string $email
      *
-     * @return Company
+     * @return CProfile
      */
     public function setEmail($email)
     {
@@ -387,7 +387,7 @@ class Company
      *
      * @param \Eti\JobeetBundle\Entity\Job $job
      *
-     * @return Company
+     * @return CProfile
      */
     public function addJob(\Eti\JobeetBundle\Entity\Job $job)
     {
@@ -431,7 +431,7 @@ class Company
      *
      * @param string $phone
      *
-     * @return Company
+     * @return CProfile
      */
     public function setPhone($phone)
     {
@@ -455,7 +455,7 @@ class Company
      *
      * @param string $description
      *
-     * @return Company
+     * @return CProfile
      */
     public function setDescription($description)
     {

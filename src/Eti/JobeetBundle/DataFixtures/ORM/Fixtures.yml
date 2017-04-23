@@ -11,10 +11,9 @@ Eti\JobeetBundle\Entity\User:
         roles: <userRoles($this->valueForCurrent)>
         plainPassword : "123456"
 
-Eti\JobeetBundle\Entity\Company:
+Eti\JobeetBundle\Entity\CProfile:
     company{1..50}:
         name (unique): <company()>
-        email: <freeEmail()>
         city: <city()>
         country: <country()>
         address: <address()>
@@ -27,7 +26,7 @@ Eti\JobeetBundle\Entity\Company:
         description: <realText(600)>
         phone: <phoneNumber()>
 
-Eti\JobeetBundle\Entity\Profile:
+Eti\JobeetBundle\Entity\UProfile:
     profile{51..100}:
         firstName: <firstName()>
         lastName: <lastName()>

@@ -1,7 +1,7 @@
-Eti\JobeetBundle\Entity\Profile:
+Eti\JobeetBundle\Entity\UProfile:
     type: entity
-    table: profile
-    repositoryClass: Eti\JobeetBundle\Repository\ProfileRepository
+    table: u_profile
+    repositoryClass: Eti\JobeetBundle\Repository\UProfileRepository
     id:
         id:
             type: integer
