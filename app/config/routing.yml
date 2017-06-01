@@ -1,9 +1,9 @@
-eti_jobeet:
-    resource: "@EtiJobeetBundle/Resources/config/routing.yml"
+eti_IRecruit:
+    resource: "@IRecruitBundle/Resources/config/routing.yml"
     prefix:   /
 
-eti_jobeet_annotation:
-    resource: "@EtiJobeetBundle/Controller/"
+eti_IRecruit_annotation:
+    resource: "@IRecruitBundle/Controller/"
     type:     annotation
     prefix:   /
 

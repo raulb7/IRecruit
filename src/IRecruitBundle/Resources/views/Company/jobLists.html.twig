@@ -1,0 +1,130 @@
+{% extends '@IRecruit/Company/layout.html.twig' %}
+
+{% block content %}
+            <div class="container">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Search for a job" name="searchTerm" id="srch-term">
+                    <div class="input-group-btn">
+                        <div class="dropdown dropdown-lg pull-left">
+                            <button type="button" class="btn btn-default dropdown-toggle" style="border-radius: 0px; font-size: 23px;" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></button>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-form" role="menu">
+                                <h1 align="center">Filter by the following criteria:</h1>
+                                    <div class="col-md-6 form-horizontal">
+                                        <div class="form-group">
+                                            <label for="filter">Category</label>
+                                            <select class="form-control filterid">
+                                                <option value="0" selected>All Categories</option>
+                                                {% for category in categories %}
+                                                    <option value="{{ category.id }}" selected>{{ category.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="filter">Company</label>
+                                            <select class="form-control filterid">
+                                                <option value="0" selected>All Companies</option>
+                                                {% for company in companies %}
+                                                    <option value="{{ company.id }}" selected>{{ company.name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-horizontal">
+                                        <div class="form-group">
+                                            <label for="contain">Position</label>
+                                            <input class="form-control" type="text" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contain">Location</label>
+                                            <input class="form-control" type="text" />
+                                        </div>
+                                    </div>
+                                {#<div class="input-group-btn">#}
+                                    {#<button class="btn btn-default" type="submit" align="center" style="border-radius: 0px; font-size: 18"><span class="glyphicon glyphicon-search"></span></button>#}
+                                {#</div>#}
+                            </div>
+                        </div>
+                        <button class="btn btn-default" type="submit" style="font-size: 23px;"><span class="glyphicon glyphicon-search"></span></button>
+                    </div>
+                </div>
+            </div>
+            <div id="fh5co-pricing-section" style="background: transparent">
+                <div class="container">
+                    <div class="row">
+                        {% for job in pagination %}
+                            <div class="col-md-4 animate-box">
+                                <div class="price-box">
+                                    <h2 class="pricing-plan" align="left" style="font-size:70%">{{ job.createdAt|date }}</h2>
+                                    <img src="{{ asset('assets/images/upload/' ~ job.company.logo) }}" alt="user" height="70%" width="70%">
+                                    <p><b>{{ job.position }}</b></p>
+                                    <button type="button" data-job-id="{{ job.id }}" class="btn btn-primary open-modal-js" data-toggle="modal" data-target="#myModal">
+                                        View
+                                    </button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+                <nav>
+                    {{ knp_pagination_render(pagination) }}
+                </nav>
+            </div>
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+            </div>
+    {#</div>#}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function () {
+            $('#myModal').on('show.bs.modal', function(e) {
+                var $invoker = $(e.relatedTarget);
+                var jobId = $invoker.data('job-id');
+                var initialPath = "{{ path('newJobModalDisplay', {'id': -1}) }}";
+                var path = initialPath.replace("-1", jobId);
+                $.ajax({
+                    url: path,
+                    success: function (data) {
+                        $('#myModal').html(data);
+                    }
+                });
+            });
+            $('.filterid').on('click', function(e){
+                e.stopPropagation();
+            });
+        });
+        $(document).ready(function () {
+            $('#myModal').on('click', '.btn-apply-js', function (e) {
+                var $invoker = $(e.relatedTarget);
+                var jobId = $invoker.data('job-id');
+                var initialPath = "{{ path('applyJob', {'id': "00"}) }}";
+                var path = initialPath.replace("00", jobId);
+                console.log(path);
+                $.ajax({
+                    url: path,
+                    dataType: "json",
+                    data: {},
+                    success: function (data) {
+
+                        if (data.status == 'success') {
+                            alert(data.message);
+                        }
+
+                        if (data.status == 'fail') {
+                            alert(data.message);
+
+                            if (data.message.indexOf("logged") !== -1) {
+                                window.location.replace('{{ path('login') }}');
+                            }
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+

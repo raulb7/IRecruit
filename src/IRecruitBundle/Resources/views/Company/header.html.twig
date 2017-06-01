@@ -1,0 +1,23 @@
+<header id="fh5co-header" role="banner" style="background: white">
+    <div class="container">
+        <div class="header-inner">
+            <h1><a href="{{ path('homepage') }}" name="top">iRecruit</a></h1>
+            <nav role="navigation">
+                <ul>
+                    <li class="cta"><a href="{{ path('newJob') }}">POST A JOB</a></li>
+                    {% if app.user %}
+                        {% if is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
+                            <li><a href="{{ path('user_dashboard') }}">DASHBOARD</a></li>
+                            <li><a href="{{ path('logout') }}">LOG OUT</a></li>
+                        {% else %}
+                            <li><a href="{{ path('company_dashboard') }}">DASHBOARD</a></li>
+                            <li><a href="{{ path('logout') }}">LOG OUT</a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="{{ path('login') }}">LOG IN</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>

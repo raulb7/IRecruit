@@ -1,0 +1,34 @@
+services:
+    sonata.admin.category:
+        class: IRecruitBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Category" }
+        arguments:
+            - ~
+            - IRecruitBundle\Entity\Category
+            - 'IRecruitBundle:Admin\CategoryAdmin'
+        calls:
+            - [ setTranslationDomain, [backend]]
+    sonata.admin.job:
+        class: IRecruitBundle\Admin\JobAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Job" }
+        arguments:
+            - ~
+            - IRecruitBundle\Entity\Job
+            - 'IRecruitBundle:Admin\JobAdmin'
+        calls:
+            - [ setTranslationDomain, [backend]]
+    sonata.admin.affiliate:
+        class: IRecruitBundle\Admin\AffiliateAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Affiliate" }
+        arguments:
+            - ~
+            - IRecruitBundle\Entity\Affiliate
+            - 'IRecruitBundle:Admin\AffiliateAdmin'
+    login_success_handler:
+        class:   IRecruitBundle\Security\Handler\AuthenticationSuccessHandler
+        arguments:  [@router, @security.context]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }

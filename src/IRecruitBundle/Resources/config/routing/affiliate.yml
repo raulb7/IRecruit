@@ -1,0 +1,10 @@
+eti_affiliate_new:
+    path:  /new
+    defaults: { _controller: "IRecruitBundle:Affiliate:new" }
+eti_affiliate_create:
+    path: /create
+    defaults: { _controller: "IRecruitBundle:Affiliate:create" }
+    methods: POST
+eti_affiliate_wait:
+    path: /wait
+    defaults: { _controller: "IRecruitBundle:Affiliate:wait" }

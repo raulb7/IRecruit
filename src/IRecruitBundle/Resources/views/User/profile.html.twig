@@ -1,0 +1,237 @@
+{% extends '@IRecruit/dashlayout.html.twig' %}
+{% block content %}
+    {% if userCondition %}
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    {% if userCondition %}
+                         <img src="{{ asset('assets/images/upload/' ~ profile.image) }}" class="img-circle" alt="User Image">
+                    {% else %}
+                        <img src="{{ asset('assets/images/upload/' ~ profile.logo) }}" class="img-circle" alt="Company logo">
+                    {% endif %}
+                </div>
+                <div class="pull-left info">
+                    <p style="font-size: 130%">{{ user.username }}</p>
+                    <a href="#" style="font-size: 130%"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div><br>
+            <ul class="sidebar-menu">
+                <li class="header" style="font-size: 130%">MAIN NAVIGATION</li>
+                <li class="treeview">
+                    <a href="{{ path('profile') }}">
+                        <i class="fa fa-edit" style="font-size: 120%"></i> <span style="font-size: 130%">Profile</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-folder" style="font-size: 120%"></i> <span style="font-size: 130%">Curriculum vitae</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{ path('user_cv') }}" ><i class="fa fa-circle-o"></i>View CV</a></li>
+                        <li><a href="" data-toggle="modal" data-target="#cvModal"><i class="fa fa-circle-o"></i>Upload a new CV</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </aside>
+    {% endif %}
+    <div class="modal fade" tabindex="-1" id="cvModal" role="dialog" aria-labelledby="myModalLabel">
+    </div>
+    <div class="content-wrapper">
+        <section class="content-header">
+            {% if userCondition %}
+            <h1>
+                User Profile
+            </h1>
+            {% else %}
+            <h1>
+                Company Profile
+            </h1>
+            {% endif %}
+        </section>
+        <section class="content">
+            {% if userCondition %}
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="box box-primary">
+                            <div class="box-body box-profile">
+                                {% if userCondition %}
+                                    <img class="profile-user-img img-responsive img-circle" style="height: 250px; width: 230px" src="{{ asset('assets/images/upload/' ~ profile.image) }}">
+                                {% else %}
+                                    <img class="profile-user-img img-responsive" style="height: 250px; width: 230px" src="{{ asset('assets/images/upload/' ~ profile.logo) }}">
+                                {% endif %}
+                                {% if userCondition %}
+                                <h3 class="profile-username text-center"><b>{{ profile.firstName }} {{ profile.lastName }}</b></h3>
+                                    <a href="{{ path('user_cv') }}" class="btn btn-primary btn-block"><b>View CV</b></a>
+                                {% else %}
+                                    <a href="{{ path('viewPDF',{'id':user.id}) }}" class="btn btn-primary btn-block"><b>View CV</b></a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9" style="font-size: 150%;">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+
+                                <li class="active"><a href="#activity" data-toggle="tab">About me</a></li>
+                                <li><a href="#contact" data-toggle="tab">Contact</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    {% if userCondition %}
+                                        <div class="box-body">
+                                            <strong><i class="fa fa-map-marker margin-r-5"></i> Current location</strong>
+                                            <p class="text-muted"><br>
+                                                {{ profile.address }} , {{ profile.city }} , {{ profile.country }}
+                                            </p>
+                                            <hr>
+                                            <strong><i class="fa fa-calendar margin-r-5"></i> Birth date</strong>
+                                            <p class="text-muted"><br>
+                                                {{ profile.birthDate | date("d-M-Y") }}
+                                            </p>
+                                            <hr>
+                                            <strong><i class="fa fa-map-marker margin-r-5"></i> Birth place</strong>
+                                            <p class="text-muted"><br>
+                                                {{ profile.birthPlace }}
+                                            </p>
+                                            <hr>
+                                            <strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+                                            {% set states = ["danger","success","info","warning","primary"] %}
+                                            {% set skills = profile.skills | split(",") %}
+                                            <p><br>
+                                                {% for skill in skills %}
+                                                    <span class="label label-{{ states[random(4)] }}">{{ skill }}</span>
+                                                {% endfor %}
+                                            </p>
+
+                                            <hr>
+                                            <strong><i class="fa fa-trophy margin-r-5"></i> Objectives</strong>
+                                            <p class="text-muted"><br>
+                                                {{ profile.objectives }}
+                                            </p>
+                                            <hr>
+                                            <strong><i class="fa fa-file-text-o margin-r-5"></i> Short introduction</strong>
+                                            <p class="text-muted"><br>
+                                                {{ profile.description }}
+                                            </p>
+                                            <hr>
+                                            <strong><i class="fa fa-genderless margin-r-5"></i> Gender</strong>
+                                            <p class="text-muted"><br>
+                                                {% if profile.gender == constant("Eti\\IRecruitBundle\\Entity\\UProfile::GENDER_FEMALE") %}}
+                                                    Female
+                                                {% else %}
+                                                    Male
+                                                {% endif %}
+                                            </p>
+                                            <hr>
+                                        </div>
+                                    {% endif %}
+                                    </div>
+                                <div class="tab-pane" id="contact">
+                                    <div class="box-body">
+                                        <strong><i class="fa fa-envelope-open margin-r-5"></i> E-mail</strong>
+                                        <p class="text-muted">
+                                            {{ user.email }}
+                                        </p>
+                                        <hr>
+                                        <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+                                        <p class="text-muted">{{ profile.phone }}</p>
+                                        <hr>
+                                        <strong><i class="fa fa-facebook-square margin-r-5"></i> Facebook</strong>
+                                        <p class="text-muted"><a href="{{ profile.facebook }}"> {{ profile.facebook }} </a></p>
+                                        <hr>
+                                        <strong><i class="fa fa-linkedin-square margin-r-5"></i> Linkedin</strong>
+                                        <p class="text-muted"><a href="{{ profile.linkedin }}"> {{ profile.linkedin }} </a></p>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+
+                <div class="row">
+                    <div class="col-md-3">
+
+                        <!-- Profile Image -->
+                        <div class="box box-primary">
+                            <div class="box-body box-profile">
+                                {% if userCondition %}
+                                    <img class="profile-user-img img-responsive img-circle" style="height: 250px; width: 230px" src="{{ asset('assets/images/upload/' ~ profile.image) }}">
+                                {% else %}
+                                    <img class="profile-user-img img-responsive" style="height: 250px; width: 230px" src="{{ asset('assets/images/upload/' ~ profile.logo) }}">
+                                {% endif %}
+                                <hr>
+                                <h3 class="profile-username text-center"><b>{{ profile.name }}</b></h3>
+                            </div>
+                            <!-- /.box-body -->
+                        </div>
+                        <!-- /.box -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-md-9" style="font-size: 150%;">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+
+                                <li class="active"><a href="#activity" data-toggle="tab">Company profile</a></li>
+                                <li><a href="#contact" data-toggle="tab">Contact</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <div class="box-body">
+                                        <strong><i class="fa fa-map-marker margin-r-5"></i> Current location</strong>
+                                        <p class="text-muted"><br>
+                                            {{ profile.address }} , {{ profile.city }} , {{ profile.country }}
+                                        </p>
+                                        <hr>
+                                        <strong><i class="fa fa-genderless margin-r-5"></i> Business / Domain</strong>
+                                        <p class="text-muted"><br>
+                                            {{ profile.activityDomain }}
+                                        </p>
+                                        <hr>
+                                        <strong><i class="fa fa-file-text-o margin-r-5"></i> Company description</strong>
+                                        <p class="text-muted"><br>
+                                            {{ profile.description }}
+                                        </p>
+                                        <hr>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="contact">
+                                    <div class="box-body">
+                                        <strong><i class="fa fa-envelope margin-r-5"></i> E-mail</strong>
+                                        <p class="text-muted">
+                                            {{ user.email }}
+                                        </p>
+                                        <hr>
+                                        <strong><i class="fa fa-phone margin-r-5"></i> Phone</strong>
+                                        <p class="text-muted">{{ profile.phone }}</p>
+                                        <hr>
+                                        <strong><i class="fa fa-hashtag margin-r-5"></i> Website</strong>
+                                        <p class="text-muted">
+                                            {{ profile.url }}
+                                        </p>
+                                        <hr>
+                                        <strong><i class="fa fa-facebook-square margin-r-5"></i> Facebook</strong>
+                                        <p class="text-muted"><a href="{{ profile.facebook }}"> {{ profile.facebook }} </a></p>
+                                        <hr>
+                                        <strong><i class="fa fa-linkedin-square margin-r-5"></i> Linkedin</strong>
+                                        <p class="text-muted"><a href="{{ profile.linkedin }}"> {{ profile.linkedin }} </a></p>
+                                        <hr>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            {% endif %}
+        </section>
+    </div>
+    <div class="control-sidebar-bg"></div>
+{% endblock %}

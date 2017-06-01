@@ -28,7 +28,7 @@ security:
 
     providers:
         main:
-            entity: { class: Eti\JobeetBundle\Entity\User, property: username }
+            entity: { class: IRecruitBundle\Entity\User, property: username }
 
     encoders:
-        Eti\JobeetBundle\Entity\User: sha512
+        IRecruitBundle\Entity\User: sha512

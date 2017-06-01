@@ -1,0 +1,6 @@
+Your affiliate account has been activated.
+Your secret token is {{affiliate}}.
+You can see the jobs list at the following addresses:
+{{ app.request.getSchemeAndHttpHost() ~ path('eti_IRecruit_api', {'token': affiliate, '_format': 'xml'}) }}
+{{ app.request.getSchemeAndHttpHost() ~ path('eti_IRecruit_api', {'token': affiliate, '_format': 'json'}) }}
+{{ app.request.getSchemeAndHttpHost() ~ path('eti_IRecruit_api', {'token': affiliate, '_format': 'yaml'}) }}

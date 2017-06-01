@@ -1,0 +1,65 @@
+IRecruitBundle\Entity\CProfile:
+    type: entity
+    table: c_profile
+    repositoryClass: IRecruitBundle\Repository\CProfileRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        name:
+            type: string
+            nullable: false
+        activityDomain:
+            type: string
+            nullable: false
+        city:
+            type: string
+            nullable: false
+        country:
+            type: string
+            nullable: false
+        address:
+            type: string
+            nullable: false
+        createdAt:
+            type: datetime
+            column: created_at
+        updatedAt:
+            type: datetime
+            column: updated_at
+        logo:
+            type: string
+            length: 255
+            nullable: true
+        url:
+            type: string
+            length: 255
+            nullable: true
+        phone:
+            type: string
+            nullable: true
+        description:
+            type: text
+            nullable: true
+        facebook:
+            type: string
+            nullable: true
+        linkedin:
+            type: string
+            nullable: true
+    oneToOne:
+        user:
+            targetEntity: IRecruitBundle\Entity\User
+            inversedBy:   company
+            cascade: ["persist"]
+            joinColumn:
+                name: id
+                referencedColumnName: id
+    oneToMany:
+        jobs:
+            targetEntity: Job
+            mappedBy: company
+    lifecycleCallbacks:
+        prePersist: [ setCreatedAtValue, setTokenValue ]
+        preUpdate: [ setUpdatedAtAtValue ]

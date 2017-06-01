@@ -1,0 +1,72 @@
+login:
+    path:   /login
+    defaults:  { _controller: IRecruitBundle:Default:login }
+login_check:
+    path:   /login_check
+logout:
+    path:   /logout
+
+user_register:
+    path:   /register
+    defaults:  { _controller: IRecruitBundle:Default:register }
+
+homepage:
+    path:   /home
+    defaults:  { _controller: IRecruitBundle:Default:homepage }
+
+joblists:
+    path:   /joblists
+    defaults:  { _controller: IRecruitBundle:Default:jobList }
+
+user_dashboard:
+    path:   /user/dashboard
+    defaults:  { _controller: IRecruitBundle:User:dashboard}
+
+
+profile:
+    path:   /user/profile
+    defaults:  { _controller: IRecruitBundle:User:profile}
+
+cv_upload:
+    path:   /user/uploadcv
+    defaults:  { _controller: IRecruitBundle:User:uploadCv}
+
+user_cv:
+    path:   /user/cv
+    defaults:  { _controller: IRecruitBundle:User:viewPDF}
+
+company_dashboard:
+    path:   /company/dashboard
+    defaults:  { _controller: IRecruitBundle:Company:dashboard}
+
+cprofile:
+    path:   /company/profile
+    defaults:  { _controller: IRecruitBundle:Company:profile}
+
+viewCompany:
+    path:   /company/{id}
+    defaults:  { _controller: IRecruitBundle:Company:viewProfile}
+    requirements: {id: "\d+"}
+
+newJob:
+    path:   /company/job/new
+    defaults:  { _controller: IRecruitBundle:Company:newJob}
+
+jobModalDisplay:
+    path:   /job/modaldisplay/{id}
+    defaults:  { _controller: IRecruitBundle:Company:newJobModalDisplay}
+    requirements: {id: "\d+"}
+
+viewPDF:
+    path:   /cv/{id}
+    defaults:  { _controller: IRecruitBundle:Company:viewPDF}
+    requirements: {id: "\d+"}
+
+company_jobs:
+    path:   /company/myjobs
+    defaults:  { _controller: IRecruitBundle:Company:list}
+
+applyJob:
+    path:   /apply/job/{id}
+    defaults:  { _controller: IRecruitBundle:Job:applyJob}
+    requirements: {id: "\d+"}

@@ -1,0 +1,20 @@
+IRecruitBundle\Entity\User:
+    type:  entity
+    table: user
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    oneToOne:
+        company:
+            targetEntity: IRecruitBundle\Entity\CProfile
+            mappedBy:     user
+        profile:
+            targetEntity: UProfile
+            mappedBy:     user
+
+    manyToMany:
+        jobs:
+          targetEntity: Job
+          mappedBy: users

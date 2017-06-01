@@ -1,0 +1,11 @@
+{% extends 'IRecruitBundle::layout.html.twig' %}
+ 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('bundles/IRecruit/css/jobs.css') }}" type="text/css" media="all" />
+{% endblock %}
+{% block content %}
+    <div id="jobs">
+        {% include 'IRecruitBundle:Job:list.html.twig' %}
+    </div>
+{% endblock %}

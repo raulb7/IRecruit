@@ -1,0 +1,44 @@
+<div class="modal-dialog" style="width: 1000px" role="document">
+    <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <div class="row">
+                    <div align="center">
+                        &emsp;&emsp;<img src="{{ asset('assets/images/upload/' ~ job.company.logo) }}"  style="width: 250px; height: 250px;"/><br>
+                        <h4 class="modal-title" id="myModalLabel" style="font-size:150%"><b>{{ job.position }}</b></h4><br>
+                    </div>
+                </div>
+            </div>
+            <hr class="style-seven">
+            <div class="modal-body" style="color:black">
+                <h3 align="center"><b>Company details</b></h3>
+                    <h4><b>Name</b></h4>
+                        <p>&emsp;<span class="glyphicon glyphicon-sort-by-alphabet"></span>&emsp;{{ job.company.name }}</p>
+                    <h4><b>Activity domain</b></h4>
+                        <p>&emsp;<span class="glyphicon glyphicon-globe"></span>&emsp;{{ job.company.activityDomain }}</p>
+                    <h4><b>Website</b></h4>
+                        &emsp;<a href="{{ job.company.url }}" style="color: darkblue"><span class="glyphicon glyphicon-chevron-right">&emsp;{{ job.company.url }}</a>
+                    <br><br><hr class="style-seven">
+                <h3 align="center"><b>Job</b></h3>
+                    <h4><b>Type</b></h4>
+                        <p>&emsp;<span class="glyphicon glyphicon-link"></span>&emsp;{{ job.type }}</p>
+                    <h4><b>Description</b></h4>
+                        <p>&emsp;<span class="glyphicon glyphicon-text-background"></span>&emsp;{{ job.description|nl2br }}</p>
+                    <br><hr class="style-seven">
+                <h3 align="center"><b>Location</b></h3>
+                    <h4><b>Site address</b></h4>
+                        <p>&emsp;<span class="glyphicon glyphicon-map-marker"></span>&emsp;{{ job.location }}</p>
+                    <br><hr class="style-seven">
+                <h3 align="center"><b>How to apply?</b></h3>
+                    <p>&emsp;<span class="glyphicon glyphicon-log-in"></span>&emsp;{{ job.howtoapply }}</p><br>
+                    <hr style="height: 30px; border-style: solid; border-color: black; border-width: 0 0 1px 0; border-radius: 20px;">
+                    <p align="right">Expires at: {{ job.expiresAt|date }}</p><br>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal" style="background:orange"><span class="glyphicon glyphicon-remove"></span> Close</button>
+                <button type="button" class="btn btn-primary btn-apply-js" style="background:green"><span class="glyphicon glyphicon-ok"></span> Apply!</button>
+            </div>
+    </div>
+</div>
+
+
