@@ -6,11 +6,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
+use IRecruitBundle\Entity\UProfile;
 
 use Symfony\Component\Validator\Constraints as Assert;
 
 class UserController extends Controller
 {
+    public function profileAction()
+    {
+        return $this->render('@IRecruit/User/uprofile.html.twig');
+    }
+
+    public function viewProfileAction(Request $request, UProfile $profile)
+    {
+        return $this->render('@IRecruit/User/puprofile.html.twig', array(
+            'profile' => $profile,
+            'user' => $profile->getUser()
+        ));
+    }
+
     public function dashboardAction(Request $request)
     {
         $em = $this->get("doctrine.orm.entity_manager");
@@ -43,11 +57,6 @@ class UserController extends Controller
         }
 
         return $this->render('@IRecruit/User/userdash.html.twig', ['form' => $form->createView(), 'success' => $isSuccess]);
-    }
-
-    public function profileAction()
-    {
-        return $this->render('@IRecruit/User/profile.html.twig');
     }
 
     public function uploadCvAction(Request $request)

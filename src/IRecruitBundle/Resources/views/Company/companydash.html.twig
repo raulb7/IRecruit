@@ -1,4 +1,4 @@
-{% extends '@IRecruit/dashlayoutcompany.html.twig' %}
+{% extends '@IRecruit/Layout/dashlayout.html.twig' %}
 {% set profile = app.user.profile %}
 {% set company = app.user.company %}
 {% block content %}
@@ -30,7 +30,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{ path('company_jobs') }}" ><i class="fa fa-circle-o"></i>My jobs</a></li>
-                        <li><a href="{{ path('eti_job_create') }}" ><i class="fa fa-circle-o"></i>Add a new job</a></li>
+                        <li><a href="{{ path('jobCreate') }}" ><i class="fa fa-circle-o"></i>Add a new job</a></li>
                     </ul>
                 </li>
             </ul>

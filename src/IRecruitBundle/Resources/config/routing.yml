@@ -35,6 +35,11 @@ user_cv:
     path:   /user/cv
     defaults:  { _controller: IRecruitBundle:User:viewPDF}
 
+viewUser:
+    path:   /view/user/{id}
+    defaults:  { _controller: IRecruitBundle:User:viewProfile}
+    requirements: {id: "\d+"}
+
 company_dashboard:
     path:   /company/dashboard
     defaults:  { _controller: IRecruitBundle:Company:dashboard}
@@ -44,18 +49,18 @@ cprofile:
     defaults:  { _controller: IRecruitBundle:Company:profile}
 
 viewCompany:
-    path:   /company/{id}
+    path:   /view/company/{id}
     defaults:  { _controller: IRecruitBundle:Company:viewProfile}
     requirements: {id: "\d+"}
 
 newJob:
     path:   /company/job/new
-    defaults:  { _controller: IRecruitBundle:Company:newJob}
+    defaults:  { _controller: IRecruitBundle:Job:newJob}
 
-jobModalDisplay:
+newJobModalDisplay:
     path:   /job/modaldisplay/{id}
     defaults:  { _controller: IRecruitBundle:Company:newJobModalDisplay}
-    requirements: {id: "\d+"}
+    requirements: {id: "-?\d+"}
 
 viewPDF:
     path:   /cv/{id}
@@ -70,3 +75,8 @@ applyJob:
     path:   /apply/job/{id}
     defaults:  { _controller: IRecruitBundle:Job:applyJob}
     requirements: {id: "\d+"}
+
+jobCreate:
+    path:     /company/job/create
+    defaults: { _controller: IRecruitBundle:Job:createJob }
+    methods:  POST|GET

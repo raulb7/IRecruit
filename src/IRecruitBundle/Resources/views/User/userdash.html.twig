@@ -1,4 +1,4 @@
-{% extends '@IRecruit/dashlayout.html.twig' %}
+{% extends '@IRecruit/Layout/dashlayout.html.twig' %}
 {% set profile = app.user.profile %}
 {% block content %}
     <aside class="main-sidebar">
@@ -8,7 +8,7 @@
                     <img src="{{ asset('assets/images/upload/' ~ profile.image) }}" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p style="font-size: 130%">{{ user.username }}</p>
+                    <p style="font-size: 130%">{{ app.user.username }}</p>
                     <a href="#" style="font-size: 130%"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div><br>
@@ -114,7 +114,7 @@
                                     <hr>
                                     <strong><i class="fa fa-genderless margin-r-5"></i> Gender</strong>
                                     <p class="text-muted"><br>
-                                            {% if profile.gender == constant("Eti\\IRecruitBundle\\Entity\\UProfile::GENDER_FEMALE") %}}
+                                            {% if profile.gender == constant("IRecruitBundle\\Entity\\UProfile::GENDER_FEMALE") %}
                                                  Female
                                             {% else %}
                                                  Male

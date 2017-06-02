@@ -1,4 +1,4 @@
-{% extends '@IRecruit/Company/layout.html.twig' %}
+{% extends '@IRecruit/Layout/layout.html.twig' %}
 
 {% block form_errors %}
 {% spaceless %}
@@ -19,7 +19,7 @@
             <h1 align="center">Job creation</h1>
         </div>
         <div style="padding-top:30px;margin:50px;" class="panel-body">
-            <form action="{{ path('eti_job_create') }}" method="post" {{ form_enctype(form) }} style="color:black">
+            <form action="{{ path('jobCreate') }}" method="post" {{ form_enctype(form) }} style="color:black">
                 <fieldset class="form-group row">
                     <legend style="color:black"><b>Type</b></legend>
                     <div class="form-check">

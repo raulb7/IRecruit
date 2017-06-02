@@ -29,7 +29,7 @@
   <![endif]-->
 </head>
 
-<body class=" {% if not userCondition %} sidebar-collapse {% endif %} hold-transition skin-blue sidebar-mini">
+<body class=" hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <header class="main-header">
     <a href="{{ path('homepage') }}" class="logo">
@@ -38,7 +38,6 @@
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
-      {% if userCondition %}
       <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
@@ -62,7 +61,11 @@
                   <img src="{{ asset('assets/images/upload/' ~ profile.logo) }}" class="img-circle" alt="Company logo">
                 {% endif %}
                 <p>
+                {% if userCondition %}
                   {{ profile.firstName }} {{ profile.lastName }}
+                {% else %}
+                    {{ profile.name }}
+                {% endif %}
                   <small>Member since {{ profile.createdAt|date}}</small>
                 </p>
               </li>
@@ -76,7 +79,6 @@
           </li>
         </ul>
       </div>
-      {% endif %}
     </nav>
   </header>
   {% block content %}

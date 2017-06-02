@@ -1,4 +1,4 @@
-{% extends '@IRecruit/dashlayoutcompany.html.twig' %}
+{% extends '@IRecruit/Layout/dashlayout.html.twig' %}
 {% set profile = app.user.profile %}
 {% set user = app.user %}
 {% set company = app.user.company %}
@@ -31,7 +31,7 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="" ><i class="fa fa-circle-o"></i>My jobs</a></li>
-                        <li><a href="{{ path('eti_job_create') }}" ><i class="fa fa-circle-o"></i>Add a new job</a></li>
+                        <li><a href="{{ path('jobCreate') }}" ><i class="fa fa-circle-o"></i>Add a new job</a></li>
                     </ul>
                 </li>
             </ul>
@@ -46,7 +46,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                Company's active job posts
+                Company's job posts
             </h1>
         </section>
 
@@ -82,73 +82,21 @@
                                         <th>Job ID</th>
                                         <th>Position</th>
                                         <th>Status</th>
+                                        <th>Settings</th>
                                         <th>Who applied?</th>
                                         <th>Extend</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td><a href="">OR9842</a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="label label-success">Shipped</span></td>
+                                        <td><a href="">125</a></td>
+                                        <td>Engineer</td>
+                                        <td><span class="label label-success">Active</span></td>
+                                        <td>Edit</td>
                                         <td>
-                                            <a href="">Applicants list modal</a>
+                                            <a href="">Applicants</a>
                                         </td>
-                                        <td> Extend if expired </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="label label-warning">Pending</span></td>
-                                        <td>
-                                            <a href="">Applicants list modal</a>
-                                        </td>
-                                        <td> Extend if expired </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="label label-danger">Delivered</span></td>
-                                        <td>
-                                            <a href="">Applicants list modal</a>
-                                        </td>
-                                        <td> Extend if expired </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="">OR7429</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="label label-info">Processing</span></td>
-                                        <td>
-                                            <a href="">Applicants list modal</a>
-                                        </td>
-                                        <td> Extend if expired </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="">OR1848</a></td>
-                                        <td>Samsung Smart TV</td>
-                                        <td><span class="label label-warning">Pending</span></td>
-                                        <td>
-                                            <a href="">Applicants list modal</a>
-                                        </td>
-                                        <td> Extend if expired </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="">OR7429</a></td>
-                                        <td>iPhone 6 Plus</td>
-                                        <td><span class="label label-danger">Delivered</span></td>
-                                        <td>
-                                            <a href="">Applicants list modal</a>
-                                        </td>
-                                        <td> Extend if expired </td>
-                                    </tr>
-                                    <tr>
-                                        <td><a href="">OR9842</a></td>
-                                        <td>Call of Duty IV</td>
-                                        <td><span class="label label-success">Shipped</span></td>
-                                        <td>
-                                            <a href="">Applicants list modal</a>
-                                        </td>
-                                        <td> Extend if expired </td>
+                                        <td><span class="label label-success">Expired</span></td>
                                     </tr>
                                     </tbody>
                                 </table>

@@ -26,11 +26,6 @@ class Category
      */
     private $jobs;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $affiliates;
-
     private $activeJobs;
 
     private $moreJobs;
@@ -46,7 +41,6 @@ class Category
     public function __construct()
     {
         $this->jobs = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->affiliates = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -115,40 +109,6 @@ class Category
     public function getJobs()
     {
         return $this->jobs;
-    }
-
-    /**
-     * Add affiliate
-     *
-     * @param \IRecruitBundle\Entity\Affiliate $affiliate
-     *
-     * @return Category
-     */
-    public function addAffiliate(\IRecruitBundle\Entity\Affiliate $affiliate)
-    {
-        $this->affiliates[] = $affiliate;
-
-        return $this;
-    }
-
-    /**
-     * Remove affiliate
-     *
-     * @param \IRecruitBundle\Entity\Affiliate $affiliate
-     */
-    public function removeAffiliate(\IRecruitBundle\Entity\Affiliate $affiliate)
-    {
-        $this->affiliates->removeElement($affiliate);
-    }
-
-    /**
-     * Get affiliates
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAffiliates()
-    {
-        return $this->affiliates;
     }
 
     public function getActiveJobs()

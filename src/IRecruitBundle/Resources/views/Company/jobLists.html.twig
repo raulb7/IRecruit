@@ -1,9 +1,10 @@
-{% extends '@IRecruit/Company/layout.html.twig' %}
+{% extends '@IRecruit/Layout/layout.html.twig' %}
 
 {% block content %}
             <div class="container">
+                <form method="GET" action="{{ path('joblists') }}">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Search for a job" name="searchTerm" id="srch-term">
+                    <input type="text" value="{{ searchTerm }}" class="form-control" placeholder="Search for a job" name="searchTerm" id="srch-term">
                     <div class="input-group-btn">
                         <div class="dropdown dropdown-lg pull-left">
                             <button type="button" class="btn btn-default dropdown-toggle" style="border-radius: 0px; font-size: 23px;" data-toggle="dropdown" aria-expanded="false"><span class="glyphicon glyphicon-cog"></span></button>
@@ -12,19 +13,19 @@
                                     <div class="col-md-6 form-horizontal">
                                         <div class="form-group">
                                             <label for="filter">Category</label>
-                                            <select class="form-control filterid">
+                                            <select class="form-control filterid" name="category">
                                                 <option value="0" selected>All Categories</option>
                                                 {% for category in categories %}
-                                                    <option value="{{ category.id }}" selected>{{ category.name }}</option>
+                                                    <option value="{{ category.id }}" {{ category.id == categoryid ? "selected" : "" }}>{{ category.name }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <label for="filter">Company</label>
-                                            <select class="form-control filterid">
+                                            <select class="form-control filterid" name="company">
                                                 <option value="0" selected>All Companies</option>
                                                 {% for company in companies %}
-                                                    <option value="{{ company.id }}" selected>{{ company.name }}</option>
+                                                    <option value="{{ company.id }}"  {{ company.id == companyid ? "selected" : "" }}>{{ company.name }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
@@ -32,11 +33,11 @@
                                     <div class="col-md-6 form-horizontal">
                                         <div class="form-group">
                                             <label for="contain">Position</label>
-                                            <input class="form-control" type="text" />
+                                            <input value="{{ position }}" class="form-control" type="text" name="position"/>
                                         </div>
                                         <div class="form-group">
                                             <label for="contain">Location</label>
-                                            <input class="form-control" type="text" />
+                                            <input value="{{ location }}" class="form-control" type="text" name="location" />
                                         </div>
                                     </div>
                                 {#<div class="input-group-btn">#}
@@ -47,22 +48,27 @@
                         <button class="btn btn-default" type="submit" style="font-size: 23px;"><span class="glyphicon glyphicon-search"></span></button>
                     </div>
                 </div>
+                </form>
             </div>
             <div id="fh5co-pricing-section" style="background: transparent">
                 <div class="container">
                     <div class="row">
-                        {% for job in pagination %}
-                            <div class="col-md-4 animate-box">
-                                <div class="price-box">
-                                    <h2 class="pricing-plan" align="left" style="font-size:70%">{{ job.createdAt|date }}</h2>
-                                    <img src="{{ asset('assets/images/upload/' ~ job.company.logo) }}" alt="user" height="70%" width="70%">
-                                    <p><b>{{ job.position }}</b></p>
-                                    <button type="button" data-job-id="{{ job.id }}" class="btn btn-primary open-modal-js" data-toggle="modal" data-target="#myModal">
-                                        View
-                                    </button>
+                        {% if jobs is not empty %}
+                            {% for job in pagination %}
+                                <div class="col-md-4 animate-box">
+                                    <div class="price-box">
+                                        <h2 class="pricing-plan" align="left" style="font-size:70%">{{ job.createdAt|date }}</h2>
+                                        <img src="{{ asset('assets/images/upload/' ~ job.company.logo) }}" alt="user" height="70%" width="70%">
+                                        <p><b>{{ job.position }}</b></p>
+                                        <button type="button" data-job-id="{{ job.id }}" class="btn btn-primary open-modal-js" data-toggle="modal" data-target="#myModal">
+                                            View
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        {% endfor %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="alert alert-danger" role="alert"><b>The selected criteria is invalid or there are no results. Please try again!</b></div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

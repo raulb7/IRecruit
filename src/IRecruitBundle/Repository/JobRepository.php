@@ -120,29 +120,45 @@ class JobRepository extends \Doctrine\ORM\EntityRepository
         return $job;    
     }
 
-    public function getForLuceneQuery($query)
+    public function findByCriteria($searchTerm, $company, $category, $position, $location)
     {
-        $hits = Job::getLuceneIndex()->find($query);
- 
-        $pks = array();
-        foreach ($hits as $hit)
-        {
-          $pks[] = $hit->pk;
+        $q = $this->createQueryBuilder('j');
+        if($searchTerm){
+            $q
+                ->join('j.company', 'co')
+                ->join('j.category', 'cat')
+                ->andWhere('(j.position LIKE :searchTerm OR co.name LIKE :searchTerm OR j.location LIKE :searchTerm OR cat.name LIKE :searchTerm)')
+                ->setParameter('searchTerm', "%$searchTerm%")
+            ;
         }
- 
-        if (empty($pks))
-        {
-          return [];
+        if($company){
+            $q
+                ->andWhere('j.company =:company')
+                ->setParameter('company', $company)
+            ;
         }
- 
-        $q = $this->createQueryBuilder('j')
-            ->where('j.id IN (:pks)')
-            ->setParameter('pks', $pks)
-//            ->andWhere('j.isActivated = :active')
-//            ->setParameter('active', 1)
-//            ->setMaxResults(20)
-            ->getQuery();
- 
-        return $q->getResult();
+        if($location){
+            $q
+                ->andWhere('j.location LIKE :location')
+                ->setParameter('location', "%$location%")
+            ;
+        }
+        if($position){
+            $q
+                ->andWhere('j.position LIKE :position')
+                ->setParameter('position', "%$position%")
+            ;
+        }
+        if($category){
+            $q
+                ->andWhere('j.category =:category')
+                ->setParameter('category', $category)
+            ;
+        }
+
+
+        return $q
+            ->getQuery()
+            ->getResult();
     }
 }

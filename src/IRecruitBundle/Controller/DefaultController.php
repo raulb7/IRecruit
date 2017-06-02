@@ -38,15 +38,13 @@ class DefaultController extends Controller
     public function jobListAction(Request $request)
     {
         $searchTerm = $request->query->get('searchTerm');
+        $company = $request->query->get('company');
+        $category = $request->query->get('category');
+        $position = $request->query->get('position');
+        $location = $request->query->get('location');
 
         $em    = $this->get('doctrine.orm.entity_manager');
-        if($searchTerm){
-            $jobs = $em->getRepository('IRecruitBundle:Job')->getForLuceneQuery($searchTerm);
-        }
-        else
-        {
-            $jobs = $em->getRepository('IRecruitBundle:Job')->findAll();
-        }
+        $jobs = $em->getRepository('IRecruitBundle:Job')->findByCriteria($searchTerm, $company, $category, $position, $location);
         $categories = $em->getRepository('IRecruitBundle:Category')->findAll();
         $companies = $em->getRepository('IRecruitBundle:CProfile')->findAll();
         $paginator  = $this->get('knp_paginator');
@@ -61,6 +59,12 @@ class DefaultController extends Controller
             'pagination' => $pagination,
             'categories' => $categories,
             'companies' => $companies,
+            'searchTerm' => $searchTerm,
+            'companyid'=> $company,
+            'categoryid'=> $category,
+            'position'=> $position,
+            'location'=> $location,
+            'jobs' => $jobs
         ));
     }
     /**
