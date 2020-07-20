@@ -71,6 +71,11 @@ company_jobs:
     path:   /company/myjobs
     defaults:  { _controller: IRecruitBundle:Company:list}
 
+applicants:
+    path:   /company/{id}/applicants
+    defaults:  { _controller: IRecruitBundle:Company:viewApplicants}
+    requirements: {id: "\d+"}
+
 applyJob:
     path:   /apply/job/{id}
     defaults:  { _controller: IRecruitBundle:Job:applyJob}
@@ -80,3 +85,12 @@ jobCreate:
     path:     /company/job/create
     defaults: { _controller: IRecruitBundle:Job:createJob }
     methods:  POST|GET
+
+jobExtend:
+    path:     /company/job/extend
+    defaults: { _controller: IRecruitBundle:Job:jobExtend }
+
+editJob:
+    path:   /company/editjob/{id}
+    defaults:  { _controller: IRecruitBundle:Job:editJob}
+    requirements: {id: "\d+"}

@@ -105,11 +105,10 @@
         });
         $(document).ready(function () {
             $('#myModal').on('click', '.btn-apply-js', function (e) {
-                var $invoker = $(e.relatedTarget);
-                var jobId = $invoker.data('job-id');
+                var button = $(e.target);
+                var jobId = button.data('job-id');
                 var initialPath = "{{ path('applyJob', {'id': "00"}) }}";
                 var path = initialPath.replace("00", jobId);
-                console.log(path);
                 $.ajax({
                     url: path,
                     dataType: "json",

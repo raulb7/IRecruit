@@ -19,14 +19,6 @@ services:
             - 'IRecruitBundle:Admin\JobAdmin'
         calls:
             - [ setTranslationDomain, [backend]]
-    sonata.admin.affiliate:
-        class: IRecruitBundle\Admin\AffiliateAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: "Content", label: "Affiliate" }
-        arguments:
-            - ~
-            - IRecruitBundle\Entity\Affiliate
-            - 'IRecruitBundle:Admin\AffiliateAdmin'
     login_success_handler:
         class:   IRecruitBundle\Security\Handler\AuthenticationSuccessHandler
         arguments:  [@router, @security.context]

@@ -20,8 +20,7 @@ class DefaultController extends Controller
     public function loginAction(Request $request)
     {
         $session = $request->getSession();
- 
-        // get the login error if there is one
+
         if ($request->attributes->has(Security::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(Security::AUTHENTICATION_ERROR);
         } else {
@@ -72,6 +71,18 @@ class DefaultController extends Controller
      */
     public function homepageAction()
     {
+        $em = $this->get('doctrine.orm.entity_manager');
+        $maxjobsid = $em->createQuery('select max(j.id) from IRecruitBundle:Job j')->getSingleScalarResult();
+        $jobs = [];
+
+        while(count($jobs) < 4) {
+            $randjobsids = rand(1,$maxjobsid);
+            $job = $em->getRepository('IRecruitBundle:Job')->findOneById($randjobsids);
+            if ($job) {
+                $jobs[] = $job;
+            }
+        }
+
         $data = new \stdClass();
         $data->searchTerm = NULL;
         $form = $this->createFormBuilder($data)
@@ -84,7 +95,8 @@ class DefaultController extends Controller
             ->getForm()
         ;
         return [
-            'searchForm'=> $form->createView()
+            'searchForm'=> $form->createView(),
+            'jobs' => $jobs
         ];
     }
     public function registerAction(Request $request)
@@ -134,7 +146,7 @@ class DefaultController extends Controller
                     $user->setPassword($encoded);
                     $user->setRoles(['ROLE_USER']);
                     $user->setEnabled(true);
-                    $profile = new Profile();
+                    $profile = new UProfile();
                     $profile->setUser($user);
                     $profile->setCountry($formData->country);
                     $profile->setCity($formData->city);
@@ -176,7 +188,7 @@ class DefaultController extends Controller
                     $user->setPassword($encoded);
                     $user->setRoles(['ROLE_USER', 'ROLE_COMPANY']);
                     $user->setEnabled(true);
-                    $company = new Company();
+                    $company = new CProfile();
                     $company->setUser($user);
                     $company->setEmail($formData->email2);
                     $company->setCountry($formData->country2);
@@ -212,12 +224,7 @@ class DefaultController extends Controller
             'userType' => $userType
         ]);
     }
-
-    public function testAction()
-    {
-       return $this->render('test.html.twig', [
-        ]);
-    }
+    
     public function jobInterfaceAction()
     {
         return $this->render('@IRecruit/Job/jobInterface.html.twig');

@@ -177,36 +177,36 @@
                             <div class="item">
                                 <div class="testimony-slide active text-center">
                                     <figure>
-                                        <img src="{{ asset('assets/images/person1.jpg') }}" alt="user">
+                                        <img src="{{ asset('assets/images/person1.png') }}" alt="user">
                                     </figure>
                                     <blockquote>
-                                        <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>
+                                        <p>"Wow, this is one of the best recruiting websites I've ever seen. I found a job within a week!"</p>
                                     </blockquote>
-                                    <span>Athan Smith, via <a href="#" class="twitter">Twitter</a></span>
+                                    <span>Athan Smith, via <a href="#" class="twitter">Facebook</a></span>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="testimony-slide active text-center">
                                     <figure>
-                                        <img src="{{ asset('assets/images/person2.jpg') }}" alt="user">
+                                        <img src="{{ asset('assets/images/person2.png') }}" alt="user">
                                     </figure>
                                     <blockquote>
-                                        <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>
+                                        <p>"I really love this website, definitely #1."</p>
                                     </blockquote>
-                                    <span>Nathalie Kosley, via <a href="#" class="twitter">Twitter</a></span>
+                                    <span>Nathalie Kosley, via <a href="#" class="twitter">Facebook</a></span>
                                 </div>
                             </div>
                             <div class="item">
                                 <div class="testimony-slide active text-center">
                                     <figure>
-                                        <img src="{{ asset('assets/images/person3.jpg') }}" alt="user">
+                                        <img src="{{ asset('assets/images/person3.png') }}" alt="user">
                                     </figure>
                                     <blockquote>
-                                        <p>"Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."</p>
+                                        <p>"Pretty simple but it's alright. I like the fact that I can apply directly from the announcement panel and that I can upload a custom CV."</p>
                                     </blockquote>
-                                    <span>Yanna Kuzuki, via <a href="#" class="twitter">Twitter</a></span>
+                                    <span>Yanna Kuzuki, via <a href="#" class="twitter">Facebook</a></span>
                                 </div>
-                            </div>
+                            </div>`
                         </div>
                     </div>
                 </div>
@@ -221,43 +221,20 @@
                 </div>
             </div>
             <div class="row">
+                {% for job in jobs %}
                 <div class="pricing">
                     <div class="col-md-3 animate-box">
                         <div class="price-box">
-                            <h2 class="pricing-plan" align="left">Data</h2>
-                            <img src="{{ asset('assets/images/image_5.jpg') }}" alt="user" height="100%" width="100%">
-                            <p><b>Manufacturing Engineer</b></p>
-                            <a href="#" class="btn btn-select-plan btn-sm">View</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 animate-box">
-                        <div class="price-box">
-                            <h2 class="pricing-plan" align="left">Data</h2>
-                            <img src="{{ asset('assets/images/image_6.jpg') }}" alt="user" height="100%" width="100%">
-                            <p><b>Manufacturing Engineer</b></p>
-                            <a href="#" class="btn btn-select-plan btn-sm">View</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 animate-box">
-                        <div class="price-box">
-                            <h2 class="pricing-plan" align="left">Data</h2>
-                            <img src="{{ asset('assets/images/image_3.jpg') }}" alt="user" height="100%" width="100%">
-                            <p><b>Manufacturing Engineer</b></p>
-                            <a href="#" class="btn btn-select-plan btn-sm">View</a>
-                        </div>
-                    </div>
-
-                    <div class="col-md-3 animate-box">
-                        <div class="price-box">
-                            <h2 class="pricing-plan" align="left">Data</h2>
-                            <img src="{{ asset('assets/images/image_5.jpg') }}" alt="user" height="100%" width="100%">
-                            <p><b>Manufacturing Engineer</b></p>
-                            <a href="#" class="btn btn-select-plan btn-sm">View</a>
+                            <h2 class="pricing-plan" align="left" style="font-size:70%">{{ job.createdAt|date }}</h2>
+                            <img src="{{ asset('assets/images/upload/' ~ job.company.logo) }}" alt="user" height="70%" width="70%">
+                            <p><b>{{ job.position }}</b></p>
+                            <button type="button" data-job-id="{{ job.id }}" class="btn btn-primary open-modal-js" data-toggle="modal" data-target="#myModal">
+                                View
+                            </button>
                         </div>
                     </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>

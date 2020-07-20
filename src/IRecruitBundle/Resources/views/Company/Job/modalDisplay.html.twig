@@ -22,6 +22,8 @@
                 <h3 align="center"><b>Job</b></h3>
                     <h4><b>Type</b></h4>
                         <p>&emsp;<span class="glyphicon glyphicon-link"></span>&emsp;{{ job.type }}</p>
+                    <h4><b>Category</b></h4>
+                    <p>&emsp;<span class="glyphicon glyphicon-sort-by-alphabet"></span>&emsp;{{ job.category.name }}</p>
                     <h4><b>Description</b></h4>
                         <p>&emsp;<span class="glyphicon glyphicon-text-background"></span>&emsp;{{ job.description|nl2br }}</p>
                     <br><hr class="style-seven">
@@ -36,7 +38,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal" style="background:orange"><span class="glyphicon glyphicon-remove"></span> Close</button>
-                <button type="button" class="btn btn-primary btn-apply-js" style="background:green"><span class="glyphicon glyphicon-ok"></span> Apply!</button>
+                <button type="button" data-job-id="{{ job.id }}" class="btn btn-primary btn-apply-js" style="background:green"><span class="glyphicon glyphicon-ok"></span> Apply!</button>
             </div>
     </div>
 </div>

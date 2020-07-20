@@ -2,7 +2,6 @@
 {% set isPublicUser = profile is defined ? true : false %}
 {% set user = isPublicUser ? profile.user : app.user %}
 {% set profile = isPublicUser ? profile : app.user.profile %}
-{% set userCondition = app.user and is_granted('ROLE_USER') and not is_granted('ROLE_COMPANY') %}
 <!DOCTYPE html>
 <html>
 <head>

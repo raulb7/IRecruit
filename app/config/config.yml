@@ -79,14 +79,31 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
-    spool:     { type: memory }
 
 sonata_block:
     default_contexts: [cms]
     blocks:
-        # enable the SonataAdminBundle block
+        sonata.user.block.menu:
         sonata.admin.block.admin_list:
-            contexts: [admin]
+            contexts:   [admin]
+        sonata.admin.block.search_result:
+            contexts:   [admin]
+        #sonata.admin_doctrine_orm.block.audit:
+        #    contexts:   [admin]
+        sonata.block.service.text:
+        sonata.block.service.rss:
+        # Some specific block from the SonataMediaBundle
+        #sonata.media.block.media:
+        #sonata.media.block.gallery:
+        #sonata.media.block.feature_media:
+
+sonata_admin:
+    templates:
+        # default global templates
+        layout:  IRecruitBundle::standard_layout.html.twig
+    title:          iRecruit
+    options:
+        title_mode: single_text
 
 doctrine_migrations:
     dir_name: "%kernel.root_dir%/DoctrineMigrations"

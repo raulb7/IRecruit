@@ -18,10 +18,22 @@ class CompanyController extends Controller
 {
     public function viewProfileAction(Request $request, CProfile $profile)
     {
-        return $this->render('@IRecruit/Company/pcprofile.html.twigcprofile.html.twig', array(
+        return $this->render('@IRecruit/Company/pcprofile.html.twig', array(
             'profile' => $profile,
             'user' => $profile->getUser()
         ));
+    }
+
+    public function viewApplicantsAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        if($user && !$this->isGranted('ROLE_COMPANY'))
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+        $job = $em->getRepository('IRecruitBundle:Job')->findOneById($id);
+
+        return $this->render('@IRecruit/Company/applicants.html.twig', array('job' => $job));
     }
 
     public function profileAction()
@@ -85,6 +97,13 @@ class CompanyController extends Controller
     
     public function listAction()
     {
-        return $this->render('@IRecruit/Company/companyJobs.html.twig', array());
+        $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+        if($user && !$this->isGranted('ROLE_COMPANY'))
+            throw new \Symfony\Component\Security\Core\Exception\AccessDeniedException();
+
+        $jobs = $em->getRepository('IRecruitBundle:Job')->findByCompanyId($user->getId());
+
+        return $this->render('@IRecruit/Company/companyJobs.html.twig', array('jobs' => $jobs));
     }
 }

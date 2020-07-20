@@ -1,0 +1,33 @@
+{% extends '@IRecruit/Layout/layout.html.twig'  %}
+{% block content %}
+    {% for type, messages in app.session.flashBag.all %}
+        {% for message in messages %}
+            <div class="{{ type }}">
+                {{ message|trans({}, 'FOSUserBundle') }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <div id="recoverybox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info" >
+            <div class="panel-heading">
+                <div class="panel-title" style="color:black"><b>Password Recovery</b></div>
+            </div>
+            <div style="padding-top:30px" class="panel-body">
+                <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                    <br>
+                    <div style="text-align:center; font-size: 20px">
+                        {% if invalid_username is defined %}
+                            <p>{{ 'resetting.request.invalid_username'|trans({'%username%': invalid_username}, 'FOSUserBundle') }}</p>
+                        {% endif %}
+                        <label for="username">{{ 'resetting.request.username'|trans({}, 'FOSUserBundle') }}</label>&nbsp;
+                        <input type="text" id="username" name="username" required="required" style="width: 400px"/>
+                    </div><br>
+                    <div style="text-align:center">
+                        <button type="submit" value="{{ 'resetting.request.submit'|trans({}, 'FOSUserBundle') }}" class="btn btn-danger">Reset Password</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

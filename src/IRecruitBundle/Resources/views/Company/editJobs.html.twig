@@ -1,0 +1,194 @@
+{% extends '@IRecruit/Layout/dashlayout.html.twig' %}
+{% set profile = app.user.profile %}
+{% set user = app.user %}
+{% set company = app.user.company %}
+{% block form_errors %}
+    {% spaceless %}
+        {% if errors|length > 0 %}
+            <ul class="error_list">
+                {% for error in errors %}
+                    <li>{{ error.messageTemplate|trans(error.messageParameters, 'validators') }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endspaceless %}
+{% endblock form_errors %}
+{% block content %}
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            <div class="user-panel">
+                <div class="pull-left image">
+                    <img src="{{ asset('assets/images/upload/' ~ company.logo) }}" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p style="font-size: 130%">{{ user.username }}</p>
+                    <a href="#" style="font-size: 130%"><i class="fa fa-circle text-success"></i> Online</a>
+                </div>
+            </div><br>
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu">
+                <li class="header" style="font-size: 130%">MAIN NAVIGATION</li>
+                <li class="treeview">
+                    <a href="{{ path('profile') }}">
+                        <i class="fa fa-edit" style="font-size: 120%"></i> <span style="font-size: 130%">Profile</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-folder" style="font-size: 120%"></i> <span style="font-size: 130%">Jobs</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="" ><i class="fa fa-circle-o"></i>My jobs</a></li>
+                        <li><a href="{{ path('jobCreate') }}" ><i class="fa fa-circle-o"></i>Add a new job</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+        <!-- /.sidebar -->
+    </aside>
+    <div class="modal fade" tabindex="-1" id="cvModal" role="dialog" aria-labelledby="myModalLabel">
+
+    </div>
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Company's job posts
+            </h1>
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+
+            <div class="row">
+                <div class="col-md-3">
+
+                    <!-- Profile Image -->
+                    <div class="box box-primary">
+                        <div class="box-body box-profile">
+                            <img class="profile-user-img img-responsive" style="height: 250px; width: 230px" src="{{ asset('assets/images/upload/' ~ company.logo) }}" alt="User profile picture">
+                            <hr>
+                            <h3 class="profile-username text-center"><b>{{ company.name }}</b></h3>
+                        </div>
+                        <!-- /.box-body -->
+                    </div>
+                    <!-- /.box -->
+                </div>
+                <!-- /.col -->
+                <div class="col-md-9" style="font-size: 150%;">
+                    <div class="box box-info">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Detailed job lists</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <div class="table-responsive" style="padding-left: 20px; padding-right: 20px;">
+                                <form action="{{ path('editJob', {'id': app.request.get('id')}) }}" method="post" {{ form_enctype(form) }} style="color:black">
+                                    <fieldset class="form-group row">
+                                        <legend style="color:black"><b>Type</b></legend>
+                                        <div class="form-check">
+                                            <input
+                                                    type="radio" class="form-check-input"
+                                                    name="{{ form.children.type.vars.full_name }}"
+                                                    value="full-time"
+                                                    {% if form.children.type.vars.value == "full-time" %}
+                                                        checked="checked"
+                                                    {% endif %}
+                                            >
+                                            Full-time
+                                        </div>
+                                        <div class="form-check">
+                                            <input
+                                                    type="radio" class="form-check-input"
+                                                    name="{{ form.children.type.vars.full_name }}"
+                                                    value="part-time"
+                                                    {% if form.children.type.vars.value == "part-time" %}
+                                                        checked="checked"
+                                                    {% endif %}
+                                            >
+                                            Part-time
+                                        </div>
+                                        <div class="form-check">
+                                            <input
+                                                    type="radio" class="form-check-input"
+                                                    name="{{ form.children.type.vars.full_name }}"
+                                                    value="freelance"
+                                                    {% if form.children.type.vars.value == "freelance" %}
+                                                        checked="checked"
+                                                    {% endif %}
+                                            >
+                                            Freelance
+                                        </div>
+                                        {{ form_errors(form.type) }}
+                                    </fieldset>
+                                    <div class="form-group row">
+                                        {{ form_label(form.category, 'Category', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                                        {{ form_widget(form.category, {'attr' : {'class' : 'form-control'}}) }}
+                                        {{ form_errors(form.category) }}
+                                    </div>
+                                    <div class="form-group row">
+                                        {{ form_label(form.position, 'Position', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                                        <div class="col-10">
+                                            {{ form_widget(form.position, {'attr' : {'class' : 'form-control'}}) }}
+                                        </div>
+                                        {{ form_errors(form.position) }}
+                                    </div>
+                                    <div class="form-group row">
+                                        {{ form_label(form.location, 'Location', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                                        <div class="col-10">
+                                            {{ form_widget(form.location, {'attr' : {'class' : 'form-control'}}) }}
+                                        </div>
+                                        {{ form_errors(form.location) }}
+                                    </div>
+                                    <div class="form-group row">
+                                        {{ form_label(form.description, 'Description', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                                        {{ form_widget(form.description, {'attr' : {'class' : 'form-control','rows' : '3'}}) }}
+                                        {{ form_errors(form.description) }}
+                                    </div>
+                                    <div class="form-group row">
+                                        {{ form_label(form.howToApply, 'How to apply?', {'label_attr' : {'class' : 'col-2 col-form-label'}})}}
+                                        <div class="col-10">
+                                            {{ form_widget(form.howToApply, {'attr' : {'class' : 'form-control'}}) }}
+                                        </div>
+                                        {{ form_errors(form.howToApply) }}
+                                    </div>
+                                    <button type="submit" id="job_submit" name="job[submit]" class="btn btn-primary pull-right">EDIT JOB</button>
+                                    {{ form_row(form._token) }}
+                                </form>
+                            </div>
+                        </div>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </section>
+    </div>
+    <div class="control-sidebar-bg"></div>
+    <!-- ./wrapper -->
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+            $('#isExpired').on('click', function (e) {
+                var button = $(e.target);
+                var path = "{{ path('jobExtend') }}?job_id="+button.data('job-id');
+                var isConfirmed =  confirm('Are you sure you want to extend the job announcement?');
+                    if (isConfirmed){
+                        $.ajax({
+                            url: path,
+                            success: function (data) {
+                                if (data.status == true)
+                                    window.location.reload();
+                                else
+                                    alert('Extending the job announcement failed. Please try again!');
+                            }
+                        });
+                    }
+                })
+        })
+    </script>
+{% endblock %}

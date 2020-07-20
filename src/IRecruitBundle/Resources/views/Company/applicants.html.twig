@@ -71,7 +71,7 @@
                 <div class="col-md-9" style="font-size: 150%;">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Detailed job lists</h3>
+                            <h3 class="box-title">Applicants list for {{ job.position }}</h3>
                         </div>
                         <!-- /.box-header -->
                         <div class="box-body">
@@ -79,33 +79,18 @@
                                 <table class="table no-margin">
                                     <thead>
                                     <tr>
-                                        <th>Job ID</th>
-                                        <th>Position</th>
-                                        <th>Status</th>
-                                        <th>Settings</th>
-                                        <th>Who applied?</th>
-                                        <th>Extend</th>
+                                        <th>Applicants' name</th>
+                                        <th>User Profile</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    {% for job in jobs %}
-                                    <tr>
-                                        <td><a href="">{{ job.id }}</a></td>
-                                        <td>{{ job.position }}</td>
-                                        {% set statusCondition = ("now"|date('U') - job.expiresAt|date('U'))<0 %}
-                                        {% if statusCondition %}
-                                            <td><span class="label label-success">Active</span></td>
-                                        {% else %}
-                                            <td><span class="label label-danger">Expired</span></td>
-                                        {% endif %}
-                                        <td><a href="{{ path('editJob', {'id': job.id}) }}">Edit</a></td>
-                                        <td>
-                                            <a href="{{ path('applicants',  {'id': job.id}) }}">Applicants</a>
-                                        </td>
-                                        {% if not statusCondition %}
-                                            <td><span id="isExpired" class="btn btn-danger" data-job-id="{{ job.id }}">Extend now!</span></td>
-                                        {% endif %}
-                                    </tr>
+                                    {% for user in job.users %}
+                                            <tr>
+                                                <td>{{ user.profile.firstName }} {{ user.profile.lastName }}</td>
+                                                <td>
+                                                    <a href="{{ path('viewUser', {'id': user.profile.id}) }}">View profile</a>
+                                                </td>
+                                            </tr>
                                     {% endfor %}
                                     </tbody>
                                 </table>

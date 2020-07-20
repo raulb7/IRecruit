@@ -27,7 +27,7 @@
                                 type="radio" class="form-check-input"
                                 name="{{ form.children.type.vars.full_name }}"
                                 value="full-time"
-                                {% if form.children.type.vars.full_name == "full-time" %}
+                                {% if form.children.type.vars.value == "full-time" %}
                                     checked="checked"
                                 {% endif %}
                             >
@@ -38,7 +38,7 @@
                                     type="radio" class="form-check-input"
                                     name="{{ form.children.type.vars.full_name }}"
                                     value="part-time"
-                                    {% if form.children.type.vars.full_name == "part-time" %}
+                                    {% if form.children.type.vars.value == "part-time" %}
                                         checked="checked"
                                     {% endif %}
                             >
@@ -49,7 +49,7 @@
                                     type="radio" class="form-check-input"
                                     name="{{ form.children.type.vars.full_name }}"
                                     value="freelance"
-                                    {% if form.children.type.vars.full_name == "freelance" %}
+                                    {% if form.children.type.vars.value == "freelance" %}
                                         checked="checked"
                                     {% endif %}
                             >

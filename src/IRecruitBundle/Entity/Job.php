@@ -469,22 +469,24 @@ class Job
     // Handling image upload
     protected function getUploadDir()
     {
-        return 'uploads/jobs';
+        return 'assets/images/upload';
     }
  
     protected function getUploadRootDir()
     {
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
     }
- 
+
     public function getWebPath()
     {
-        return null === $this->logo ? null : $this->getUploadDir().'/'.$this->logo;
+        $logo = $this->getCompany()->getLogo();
+        return null === $logo ? null : $this->getUploadDir().'/'.$logo;
     }
- 
+
     public function getAbsolutePath()
     {
-        return null === $this->logo ? null : $this->getUploadRootDir().'/'.$this->logo;
+        $logo = $this->getCompany()->getLogo();
+        return null === $logo ? null : $this->getUploadRootDir().'/'.$logo;
     }
 
     /**

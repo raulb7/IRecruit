@@ -122,7 +122,10 @@ class JobRepository extends \Doctrine\ORM\EntityRepository
 
     public function findByCriteria($searchTerm, $company, $category, $position, $location)
     {
-        $q = $this->createQueryBuilder('j');
+        $q = $this->createQueryBuilder('j')
+            ->where('j.expiresAt> :now')
+            ->setParameter('now', new \DateTime())
+        ;
         if($searchTerm){
             $q
                 ->join('j.company', 'co')
@@ -160,5 +163,14 @@ class JobRepository extends \Doctrine\ORM\EntityRepository
         return $q
             ->getQuery()
             ->getResult();
+    }
+
+    public function findByCompanyId($companyid){
+        return $this->createQueryBuilder('job')
+            ->join('job.users','users')
+            -> andWhere('job.company =:companyid')
+            ->setParameter('companyid',$companyid)
+            ->getQuery()->getResult()
+        ;
     }
 }

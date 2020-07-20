@@ -2,7 +2,7 @@ security:
     role_hierarchy:
         ROLE_COMPANY:     ROLE_USER
         ROLE_ADMIN:       [ROLE_USER, ROLE_COMPANY]
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH, ROLE_SONATA_ADMIN]
 
     firewalls:
         dev:

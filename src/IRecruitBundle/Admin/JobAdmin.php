@@ -27,14 +27,11 @@ class JobAdmin extends Admin
             ->add('type', 'choice', array('choices' => Job::getTypes(), 'expanded' => true))
             ->add('company')
             ->add('file', 'file', array('label' => 'Company logo', 'required' => false))
-            ->add('url')
             ->add('position')
             ->add('location')
             ->add('description')
             ->add('howToApply')
-            ->add('isPublic')
-            ->add('email')
-            ->add('isActivated')
+
         ;
     }
  
@@ -45,9 +42,6 @@ class JobAdmin extends Admin
             ->add('company')
             ->add('position')
             ->add('description')
-            ->add('isActivated')
-            ->add('isPublic')
-            ->add('email')
             ->add('expiresAt')
         ;
     }
@@ -58,9 +52,6 @@ class JobAdmin extends Admin
             ->addIdentifier('company')
             ->add('position')
             ->add('location')
-            ->add('url')
-            ->add('isActivated')
-            ->add('email')
             ->add('category')
             ->add('expiresAt')
             ->add('_action', 'actions', [
@@ -80,15 +71,10 @@ class JobAdmin extends Admin
             ->add('type')
             ->add('company')
             ->add('webPath', 'string', ['template' => 'IRecruitBundle:JobAdmin:list_image.html.twig'])
-            ->add('url')
             ->add('position')
             ->add('location')
             ->add('description')
             ->add('howToApply')
-            ->add('isPublic')
-            ->add('isActivated')
-            ->add('token')
-            ->add('email')
             ->add('expiresAt')
         ;
     }
@@ -104,11 +90,6 @@ class JobAdmin extends Admin
                 'label'            => 'Extend',
                 'ask_confirmation' => true // If true, a confirmation will be asked before performing the action
             ];
-            
-            $actions['deleteNeverActivated'] = array(
-                'label'            => 'Delete never activated jobs',
-                'ask_confirmation' => true // If true, a confirmation will be asked before performing the action
-            );
         }
      
         return $actions;

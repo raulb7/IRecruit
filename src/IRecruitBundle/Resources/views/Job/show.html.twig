@@ -2,9 +2,6 @@
 
 
 {% block content %}
-    {#{% if app.request.get('token') %}#}
-        {#{% include 'IRecruitBundle:Job:admin.html.twig' %}#}
-    {#{% endif %}#}
     <div id="job">
         <h1>{{ job.company }}</h1>
         <h2>{{ job.location }}</h2>
@@ -37,13 +34,6 @@
                 <small>posted on {{ job.createdAt|date('m/d/Y') }}</small>
             </div>
         {% endif %}
-        
-        {# Leave the following uncommented only for development purposes. #}
-        {#<div style="padding: 20px 0">#}
-            {#<a href="{{ path('eti_job_edit', { 'token': job.token }) }}">#}
-                {#Edit#}
-            {#</a>#}
-        {#</div>#}
     </div>
 {% endblock %}
 {% block javascripts %}

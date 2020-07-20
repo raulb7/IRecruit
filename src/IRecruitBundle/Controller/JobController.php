@@ -127,4 +127,50 @@ class JobController extends Controller
         ));
     }
 
+    public function jobExtendAction(Request $request){
+        $jobId = $request->query->get('job_id');
+        $em = $this->getDoctrine()->getManager();
+        /** @var Job $job */
+        $job = $em->getRepository('IRecruitBundle:Job')->findOneById($jobId);
+        if(!$job){
+            return new JsonResponse([
+                'status' => false
+            ]);
+        }
+        try{
+            $job->extend();
+            $em->merge($job);
+            $em->flush();
+            return new JsonResponse([
+                'status' => true
+            ]);
+        } catch (\Exception $e) {
+            return new JsonResponse([
+                'status' => false
+            ]);
+            
+        }
+    }
+
+    public function editJobAction(Request $request, Job $job)
+    {
+        if(!$this->isGranted('ROLE_COMPANY'))
+            throw new AccessDeniedException();
+
+        $form = $this->createCreateForm($job);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->merge($job);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('company_jobs'));
+        }
+
+        return $this->render('@IRecruit/Company/editJobs.html.twig', array(
+            'entity' => $job,
+            'form'   => $form->createView(),
+        ));
+    }
 }
