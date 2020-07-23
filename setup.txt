@@ -1,0 +1,6 @@
+1. git clone repository
+2. Install composer
+3. execute composer install and set parameters
+4. Open Autoload.php from vendor and delete last 2 lines
+5. run composer install again
+6. copy the assets folder
