@@ -24,9 +24,13 @@
         "sonata-project/doctrine-orm-admin-bundle": "2.3.*",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "friendsofsymfony/user-bundle": "~1.3",
-        "doctrine/instantiator": "1.0.5",
-        "knplabs/knp-menu-bundle": "2.1.3",
-        "knplabs/knp-paginator-bundle": "2.5.3"
+        "zf1s/zend-loader": "1.13.2",
+        "zf1/zend-search-lucene": "1.12.20",
+        "knplabs/knp-components": "1.3.4",
+        "knplabs/knp-paginator-bundle": "2.5.3",
+        "doctrine/instantiator": "1.0.5"
+
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

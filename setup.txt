@@ -1,6 +1,12 @@
 1. git clone repository
 2. Install composer
 3. execute composer install and set parameters
-4. Open Autoload.php from vendor and delete last 2 lines
-5. run composer install again
-6. copy the assets folder
+4. copy the assets folder
+
+PHPStorm mapping issues solved by adding plugins
+Symfony support - watch out support - check of translations, app folder and web folder are selected properly.
+PHP Toolbox
+PHP annotations
+
+
+http://localhost/irecruit/web/app_dev.php/home -- app_dev.php MUST be added into the path in order to enable development environment and see changes in code
